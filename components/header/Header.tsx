@@ -4,7 +4,7 @@ import Menu from './Menu'
 
 const Header = () => {
   return (
-    <header className='fixed top-0 w-full z-30'>
+    <header className='fixed top-0 w-full z-50'>
       <nav>
         <div className="navbar justify-between bg-base-300">
           <div>

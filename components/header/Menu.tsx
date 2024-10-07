@@ -22,10 +22,12 @@ const Menu = () => {
       <div>
         <ul className="flex items-stretch">
           <Link href="/rooms" className='p-3 transition duration-500 hover:text-success hover:scale-125 hover:bg-gray-800 rounded-lg md:mx-3'>Find Rooms</Link>
-          <Link href="/bookings" className='p-3 transition duration-500 hover:text-success hover:scale-125 hover:bg-gray-800 rounded-lg md:mx-3'>Bookings</Link>
+          <Link href="/about" className='p-3 transition duration-500 hover:text-success hover:scale-125 hover:bg-gray-800 rounded-lg md:mx-3'>About Us</Link>
+          <Link href="/contact" className='p-3 transition duration-500 hover:text-success hover:scale-125 hover:bg-gray-800 rounded-lg md:mx-3'>Contact</Link>
           {session && session.user ? (
             <>
               <li>
+              <Link href={`/bookings/${session.user._id}`} className='p-3 transition duration-500 hover:text-success hover:scale-125 hover:bg-gray-800 rounded-lg md:mx-3'> My Bookings</Link>
                 <div className="dropdown dropdown-bottom dropdown-end">
                   <label tabIndex={0} className="btn btn-ghost rounded-btn">
                     {session.user.name}

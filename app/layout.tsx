@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import Providers from "@/components/Providers";
 import Header from "@/components/header/Header";
+import { Footer } from "./page";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,7 +19,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Auth System",
+  title: "Deby Hotel",
   description: "By Makhosi Ncube",
 };
 
@@ -37,7 +38,9 @@ export default function RootLayout({
           <ToastContainer/>
           <Header/>
           {children}
+          <Footer/>
         </div>
+
         </Providers>
       </body>
     </html>

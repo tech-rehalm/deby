@@ -13,15 +13,15 @@ export default function AdminNavigation({children}:{children:React.ReactNode}) {
     const [open, setOpen] = useState(false)
     const pathName = usePathname()
   return (
-    <div className='w-full min-h-screen relative  pt-[60px] '>
+    <div className='w-full min-h-screen relative z-40  pt-[60px] '>
         {!open ? (
-             <div className=" w-[150px] p-2  absolute z-30 ">
+             <div className=" w-[150px] p-2  fixed z-40 ">
             <button onClick={()=>setOpen(true)} className={`btn btn-success `}>
                 <Menu className='text-2xl'/> 
             </button>
         </div>
         ): (
-            <div className={` w-[150px] p-2 absolute z-30  ${open && "bg-base-300"}`}>
+            <div className={` w-[150px] p-2 fixed z-40  ${open && "bg-base-300"}`}>
             <button onClick={()=>setOpen(false)} className={`btn btn-success `}>
                 <X className='text-2xl'/> 
             </button>
@@ -29,7 +29,7 @@ export default function AdminNavigation({children}:{children:React.ReactNode}) {
         )}
        
         {open &&
-        <motion.div onClick={()=>setOpen(false)} className="fixed  left-0 flex flex-col w-[150px] p-3 pr-0 mt-[50px] bg-base-300 h-full " 
+        <motion.div onClick={()=>setOpen(false)} className="fixed  left-0 flex flex-col w-[150px] p-3 pr-0 mt-[60px] bg-base-300 h-full z-40 " 
         initial={{opacity:0}}
         transition={{type:"spring", duration:5 }}
         animate={{opacity:1}}
