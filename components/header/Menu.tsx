@@ -27,9 +27,8 @@ const Menu = () => {
           {session && session.user ? (
             <>
               <li>
-              <Link href={`/bookings/${session.user._id}`} className='p-3 transition duration-500 hover:text-success hover:scale-125 hover:bg-gray-800 rounded-lg md:mx-3'> My Bookings</Link>
                 <div className="dropdown dropdown-bottom dropdown-end">
-                  <label tabIndex={0} className="btn btn-ghost rounded-btn">
+                  <label tabIndex={0} className="btn capitalize btn-success rounded-btn">
                     {session.user.name}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +56,7 @@ const Menu = () => {
                     )}
 
                     <li onClick={handleClick}>
-                      <Link href="/order-history">Order history </Link>
+                      <Link href={`/myorders/${session.user._id}`}>My Bookings </Link>
                     </li>
                     <li onClick={handleClick}>
                       <Link href="/profile">Profile</Link>

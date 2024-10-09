@@ -1,0 +1,96 @@
+'use client'
+
+import { useParams, useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
+
+interface Room {
+  _id: string
+  title: string
+  taken: boolean
+  field: string
+  category: string
+  description: string
+  image: string
+  number: number
+}
+
+export default function RoomDetailsPage() {
+  const [room, setRoom] = useState<Room | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+  const params = useParams()
+  const router = useRouter()
+  const id = params.id
+
+  useEffect(() => {
+    const fetchRoom = async () => {
+      try {
+        const response = await fetch(`/api/apartments/${id}`)
+        if (!response.ok) {
+          throw new Error('Failed to fetch room data')
+        }
+        const data = await response.json()
+        setRoom(data)
+      } catch (err) {
+        setError('Error fetching room data')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchRoom()
+  }, [id])
+
+  const getPricing = (field: string, category: string) => {
+    const prices = {
+      Rooms: { Medium: { 12: 60, 24: 110 }, Large: { 12: 80, 24: 130 } },
+      Conference: { Medium: { 12: 60, 24: 110 }, Large: { 12: 80, 24: 130 } },
+      Venue: { Medium: { 12: 200, 24: 300 }, Large: { 12: 300, 24: 400 } },
+      Gazebo: { Medium: { 12: 30, 24: 50 }, Large: { 12: 50, 24: 70 } }
+    }
+
+    return prices[field as keyof typeof prices]?.[category as 'Medium' | 'Large'] || { 12: 'N/A', 24: 'N/A' }
+  }
+
+  if (loading) return <div className="text-center p-4">Loading...</div>
+  if (error) return <div className="text-center p-4 text-error">{error}</div>
+  if (!room) return <div className="text-center p-4">Room not found</div>
+
+  const pricing = getPricing(room.field, room.category)
+
+  return (
+    <div className="container mx-auto p-4 pt-[80px]">
+      <div className="card lg:card-side bg-base-100 shadow-xl">
+        <figure className="lg:w-1/2">
+          <Image src={room.image} alt={room.title} width={500} height={300} className="w-full h-full object-cover" />
+        </figure>
+        <div className="card-body lg:w-1/2">
+          <h2 className="card-title text-2xl text-success">{room.title}</h2>
+          <p className="text-lg"><span className="font-bold">Category:</span> {room.category}</p>
+          <p className="text-lg"><span className="font-bold">Field:</span> {room.field}</p>
+          <p className="text-lg"><span className="font-bold">Room Number:</span> {room.number}</p>
+          <p className="text-lg"><span className="font-bold">Status:</span> {room.taken ? 'Occupied' : 'Available'}</p>
+          <div className="divider"></div>
+          <p className="text-lg font-bold text-success">Description:</p>
+          <p>{room.description}</p>
+          <div className="divider"></div>
+          <div className="pricing">
+            <p className="text-lg font-bold text-success">Pricing:</p>
+            <p>12 hours: ${pricing[12]} USD</p>
+            <p>24 hours: ${pricing[24]} USD</p>
+          </div>
+          <div className="card-actions justify-end mt-4">
+            <button 
+              className={`btn  btn-success w-full ${room.taken ? 'btn-disabled' : ''}`}
+              onClick={() => router.push(`/booking/${room._id}`)}
+              disabled={room.taken}
+            >
+              {room.taken ? 'Not Available' : 'Book Now'}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

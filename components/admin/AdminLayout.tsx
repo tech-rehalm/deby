@@ -4,7 +4,7 @@ import React from 'react'
 import {useState} from "react"
 import { Menu, Settings, ShoppingBagIcon, User2, UserCheck, X } from 'lucide-react'
 import { Hotel } from 'lucide-react'
-import { User, House } from 'lucide-react'
+import {  House } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {motion} from "framer-motion"

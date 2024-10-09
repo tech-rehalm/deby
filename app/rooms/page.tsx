@@ -69,7 +69,7 @@ export default function RoomsPage() {
                     {room.taken? (
                     <p className="font-bold text-red-600 ">Booked</p>
                     ): (
-                    <p className="font-bold text-success mb-4 lg:mb-8 ">Available</p>
+                    <p className="font-bold text-success ">Available</p>
                     )}
                 </div>
                 
@@ -93,7 +93,7 @@ export default function RoomsPage() {
                     {room.taken? (
                     <p className="font-bold text-red-600 ">Booked</p>
                     ): (
-                    <p className="font-bold text-success mb-4 lg:mb-8 ">Available</p>
+                    <p className="font-bold text-success">Available</p>
                     )}
                 </div>
                 
@@ -143,7 +143,7 @@ export default function RoomsPage() {
                     {room.taken? (
                     <p className="font-bold text-red-600 ">Booked</p>
                     ): (
-                    <p className="font-bold text-success mb-4 lg:mb-8 ">Available</p>
+                    <p className="font-bold text-success ">Available</p>
                     )}
                 </div>
                 
