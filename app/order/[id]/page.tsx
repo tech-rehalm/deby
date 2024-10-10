@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import Loading from '@/app/loading';
 
 type OrderDetails = {
   _id: string;
@@ -72,7 +73,7 @@ export default function OrderDetailsPage() {
     }
   };
 
-  if (loading) return <div className="text-center pt-16">Loading...</div>;
+  if (loading) return <Loading/>
   if (error) return <div className="text-center pt-16 text-error">{error}</div>;
   if (!order) return <div className="text-center pt-16">Order not found</div>;
 

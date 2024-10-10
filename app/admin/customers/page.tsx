@@ -6,7 +6,7 @@ import React from 'react'
 export default function page() {
   return (
     <AdminNavigation>
-        <div className="w-full  min-h-screen bg-red-400">
+        <div className="w-full  min-h-screen ">
          <Users/>   
         </div>
         

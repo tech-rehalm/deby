@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import Loading from '@/app/loading'
 
 type Room = {
   _id: string
@@ -132,7 +133,7 @@ export default function BookingPage() {
     router.push(`/checkout/${params.id}`)
   }
 
-  if (loading) return <div className="text-center pt-16">Loading...</div>
+  if (loading) return <Loading/>
   if (error) return <div className="text-center pt-16 text-error">{error}</div>
   if (!room) return <div className="text-center pt-16">Room not found</div>
 

@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts'
 import { Users, DollarSign, Home, Calendar } from 'lucide-react'
 import AdminNavigation from '@/components/admin/AdminLayout'
+import Loading from '../loading'
 
 type User = {
   _id: string
@@ -60,7 +61,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     const fetchDashboardData = async () => {
-      if (status === 'loading') return
+      if (status === 'loading') return <Loading/>
       if (!session || !session.user || session.user.role !== 'admin') {
         router.push('/signin')
         return
@@ -117,7 +118,7 @@ export default function AdminDashboard() {
     fetchDashboardData()
   }, [session, status, router])
 
-  if (loading) return <div className="text-center p-8">Loading...</div>
+  if (loading) return <Loading/>
   if (error) return <div className="text-center p-8 text-error">{error}</div>
   if (!dashboardData) return <div className="text-center p-8">No data available</div>
 

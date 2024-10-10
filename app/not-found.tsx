@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen bg-base-200 flex flex-col">
 
-      <div className="flex-grow flex items-center justify-center px-4">
+      <div className="flex-grow flex items-center justify-center px-4 mt-[60px]">
         <div className="max-w-md w-full">
           <div className="card bg-base-100 shadow-xl">
             <div className="card-body items-center text-center">

@@ -21,6 +21,7 @@ const Menu = () => {
       </div>
       <div>
         <ul className="flex items-stretch">
+          <Link href="/" className='p-3 transition duration-500 hover:text-success hover:scale-125 hover:bg-gray-800 rounded-lg md:mx-3'>Home</Link>
           <Link href="/rooms" className='p-3 transition duration-500 hover:text-success hover:scale-125 hover:bg-gray-800 rounded-lg md:mx-3'>Find Rooms</Link>
           <Link href="/about" className='p-3 transition duration-500 hover:text-success hover:scale-125 hover:bg-gray-800 rounded-lg md:mx-3'>About Us</Link>
           <Link href="/contact" className='p-3 transition duration-500 hover:text-success hover:scale-125 hover:bg-gray-800 rounded-lg md:mx-3'>Contact</Link>

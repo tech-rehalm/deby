@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import User from '@/lib/models/UserModel';
 
+const validRoles = ['admin', 'user', 'staff']; // List of valid roles
+
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   const { id } = params;
 
@@ -26,16 +28,21 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 
   try {
     const body = await req.json();
-    const { name, email } = body;
+    const { name, email, role } = body;
 
     const user = await User.findById(id);
     if (!user) {
       return NextResponse.json({ message: 'User not found' }, { status: 404 });
     }
 
-    // Update user fields
+    // Update user fields if they are provided
     if (name) user.name = name;
     if (email) user.email = email;
+
+    // Check if role is provided and is a valid role
+    if (role && validRoles.includes(role)) {
+      user.role = role;
+    }
 
     // Save the updated user
     await user.save();

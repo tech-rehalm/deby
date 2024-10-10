@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
+import Loading from '@/app/loading'
 
 type Order = {
   _id: string
@@ -25,7 +26,6 @@ type User = {
   _id: string
   name: string
   email: string
-  phone: string
 }
 
 export default function UserBookingsPage() {
@@ -62,7 +62,7 @@ export default function UserBookingsPage() {
     fetchData()
   }, [params.id])
 
-  if (loading) return <div className="text-center pt-16">Loading...</div>
+  if (loading) return <Loading/>
   if (error) return <div className="text-center pt-16 text-error">{error}</div>
   if (!user) return <div className="text-center pt-16">User not found</div>
 
@@ -76,7 +76,6 @@ export default function UserBookingsPage() {
             <h2 className="card-title text-2xl mb-4">User Details</h2>
             <p><strong>Name:</strong> {user.name}</p>
             <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Phone:</strong> {user.phone}</p>
           </div>
         </div>
 

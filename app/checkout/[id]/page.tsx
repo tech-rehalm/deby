@@ -7,6 +7,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { useSession } from 'next-auth/react'  // Import useSession from next-auth
 import { toast } from 'react-toastify'
+import Loading from '@/app/loading'
 
 type BookingStore = {
   bookingData: {
@@ -79,6 +80,7 @@ export default function CheckoutPage() {
   const params = useParams()
   const router = useRouter()
   const { bookingData, clearBookingData } = useBookingStore()
+
 
   useEffect(() => {
     const fetchRoom = async () => {
@@ -162,15 +164,15 @@ export default function CheckoutPage() {
       toast.success("Order Placed")
       router.push(`/order/${orderData._id}`)
     } catch (err) {
-        console.log(err);
-        toast.error("error trying to place order")
-      setError("error trying to place order")
+      console.log(err);
+      toast.error("Error trying to place order")
+      setError("Error trying to place order")
     } finally {
       setPlacingOrder(false)
     }
   }
 
-  if (loading) return <div className="text-center pt-16">Loading...</div>
+  if (loading) return <Loading/>
   if (error) return <div className="text-center pt-16 text-error">{error}</div>
   if (!room) return <div className="text-center pt-16">Room not found</div>
 

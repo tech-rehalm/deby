@@ -61,7 +61,7 @@ export default function Services() {
                 </div>
                 <div className="card border w-full  border-gray-800 bg-gradient-to-br from-gray-800 p-3">
                     <h1 className="text-lg font-bold text-success">Honeymoon</h1>
-                    <img src="/room1.jpg" alt="" className="h-[150px] object-cover rounded-md" />
+                    <img src="/gaze4.webp" alt="" className="h-[150px] object-cover rounded-md" />
                     <div className="text-sm my-2 font-extralight">Honeymoon suites and gazebos</div>
                     <div className="font-bold text-lg text-success">
                         Book your suite
@@ -77,7 +77,7 @@ export default function Services() {
                 </div>
                 <div className="card border w-full  border-gray-800 bg-gradient-to-br from-gray-800 p-3"> 
                     <h1 className="text-lg font-bold text-success">Wedding Venues</h1>
-                    <img src="/room1.jpg" alt="" className="h-[150px] object-cover rounded-md" />
+                    <img src="/venue5.jpg" alt="" className="h-[150px] object-cover rounded-md" />
                     <div className="text-sm my-2 font-extralight">Luxurious wedding venues</div>
                     <div className="font-bold text-lg text-success">
                         Check youe theme

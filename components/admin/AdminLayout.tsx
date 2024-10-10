@@ -46,10 +46,7 @@ export default function AdminNavigation({children}:{children:React.ReactNode}) {
             <Link href="/admin/apartments" className={`w-full my-2  p-1 rounded-l-lg flex  items-center ${pathName === "/admin/apartments" && "border border-success border-r-0 bg-gray-800 "}` }>
                  <House className='w-[50px] h-[50px] p-3 text-lg text-success bg-base-200 border-gray-800 border rounded-full'/><span className="text-sm font-extralight pl-1">Apartments</span>
             </Link>
-            <Link href="/admin/settings" className={`w-full my-2  p-1 rounded-l-lg flex  items-center ${pathName === "/admin/settings" && "border border-success border-r-0 bg-gray-800 "}` }>
-                 <Settings className='w-[50px] h-[50px] p-3 text-lg text-success bg-base-200 border-gray-800 border rounded-full'/><span className="text-sm font-extralight pl-1">Settings</span>
-            </Link>
-            <Link href="/admin/profile" className={`w-full my-2  p-1 rounded-l-lg flex  items-center ${pathName === "/admin/profile" && "border border-success border-r-0 bg-gray-800 "}` }>
+            <Link href="/profile" className={`w-full my-2  p-1 rounded-l-lg flex  items-center ${pathName === "/admin/profile" && "border border-success border-r-0 bg-gray-800 "}` }>
                  <UserCheck className='w-[50px] h-[50px] p-3 text-lg text-success bg-base-200 border-gray-800 border rounded-full'/><span className="text-sm font-extralight pl-1">Profile</span>
             </Link>
            

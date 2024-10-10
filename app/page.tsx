@@ -23,32 +23,32 @@ export function Footer() {
           <div>
             <h3 className="footer-title">About Us</h3>
             <Link href="/about" className="link link-hover block">Our Story</Link>
-            <Link href="/team" className="link link-hover block">Our Team</Link>
-            <Link href="/careers" className="link link-hover block">Careers</Link>
+            <Link href="/about" className="link link-hover block">Our Team</Link>
+            <Link href="/about" className="link link-hover block">Careers</Link>
           </div>
           <div>
             <h3 className="footer-title">Our Services</h3>
             <Link href="/rooms" className="link link-hover block">Accommodations</Link>
-            <Link href="/dining" className="link link-hover block">Dining</Link>
-            <Link href="/amenities" className="link link-hover block">Amenities</Link>
-            <Link href="/events" className="link link-hover block">Events</Link>
+            <Link href="/rooms" className="link link-hover block">Dining</Link>
+            <Link href="/rooms" className="link link-hover block">Amenities</Link>
+            <Link href="/rooms" className="link link-hover block">Events</Link>
           </div>
           <div>
             <h3 className="footer-title">Support</h3>
             <Link href="/contact" className="link link-hover block">Contact Us</Link>
-            <Link href="/faq" className="link link-hover block">FAQs</Link>
-            <Link href="/booking" className="link link-hover block">Booking Information</Link>
+            <Link href="/about" className="link link-hover block">FAQs</Link>
+            <Link href="/contact" className="link link-hover block">Booking Information</Link>
           </div>
           <div>
             <h3 className="footer-title">Connect With Us</h3>
             <div className="flex space-x-4 mt-2">
-              <a href="https://twitter.com/luxuryhotel" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <a href="https://x.com/MakhosiNcubea" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                 <Twitter className="w-6 h-6 text-success hover:text-success-focus" />
               </a>
-              <a href="https://www.facebook.com/luxuryhotel" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <a href="https://www.facebook.com/profile.php?id=100084685800756" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <Facebook className="w-6 h-6 text-success hover:text-success-focus" />
               </a>
-              <a href="https://www.instagram.com/luxuryhotel" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <a href="https://www.instagram.com/mac_rehalm" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <Instagram className="w-6 h-6 text-success hover:text-success-focus" />
               </a>
             </div>

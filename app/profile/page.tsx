@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import Loading from '../loading'
 
 type User = {
   _id: string
@@ -21,9 +22,9 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      if (status === 'loading') return
+      if (status === 'loading') return <Loading/>
       if (!session || !session.user) {
-        router.push('/login')
+        router.push('/signin')
         return
       }
 
@@ -72,7 +73,7 @@ export default function ProfilePage() {
     }
   }
 
-  if (status === 'loading' || loading) return <div className="text-center p-8">Loading...</div>
+  if (status === 'loading' || loading) return <Loading/>
   if (error) return <div className="text-center p-8 text-error">{error}</div>
   if (!user) return <div className="text-center p-8">User not found</div>
 

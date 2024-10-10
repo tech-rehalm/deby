@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import Loading from '../loading';
 
 interface Room {
   _id: string;
@@ -27,9 +28,6 @@ export default function RoomsPage() {
           throw new Error('Failed to fetch rooms');
         }
         const data = await response.json();
-        // console.log(data); // Log to inspect the structure
-
-        // Adjusted to access the `houses` array from the response
         setRooms(data.houses || []);
       } catch (err) {
         setError('Failed to load rooms. Please try again later.');
@@ -40,120 +38,98 @@ export default function RoomsPage() {
     fetchRooms();
   }, []);
 
-  // Filter for rooms with the field 'Bedroom'
   const bedrooms = rooms.filter((room) => room.field === 'Rooms');
   const conferencerooms = rooms.filter((room) => room.field === 'Conference');
   const venues = rooms.filter((room) => room.field === 'Venue');
   const gazebo = rooms.filter((room) => room.field === 'Gazebo');
-  
+
+  if (loading) return <Loading />;
 
   return (
-    <div className='w-full min-h-screen pt-[60px] p-3 flex flex-col items-center lg:p-[60px]'>
-      <h1 className="text-4xl font-extrabold opacity-80 text-gray-200 mt-5 lg:text-7xl lg:my-6">Find your stay</h1>
-      <p className="font-bold text-success mb-4 lg:mb-8">Find the room of your choice and enjoy luxurios confort</p>
-      <p className="font-extralight p-3 md:w-[80%] lg:w-[70%] text-center">
-        Experience luxury and comfort in our meticulously designed rooms and venues. Whether you're here for a relaxing stay, a business meeting, or a special event, we have the perfect space for you.
-      </p>
-      <h1 className="text-4xl w-full text-center font-extrabold opacity-80 text-gray-200 mt-5 lg:text-7xl lg:my-6">Bedrooms</h1>
-      <p className="font-bold text-success mb-4 lg:mb-8">Find the room of your choice and enjoy luxurios confort</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
-        {loading && <p>Loading rooms...</p>}
-        {error && <p className="text-red-500">{error}</p>}
-        {bedrooms.map((room) => (
-          <Link href={`rooms/${room._id}`} key={room._id} className='bg-slate-700 border border-gray-600 p-2 rounded-lg '>
-            <div className="border border-gray-800 bg-slate-800 p-2 flex flex-col rounded-lg h-full">
-                <Image src={room.image} alt={room.title} height={200} width={250} className='w-full object-cover h-[150px]' />
-                <h1 className="font-bold">{room.title}</h1>
-                <div className="w-full flex text-sm justify-between items-center my-1">
-                    <p className="font-extralight ">{room.category}</p>
-                    {room.taken? (
-                    <p className="font-bold text-red-600 ">Booked</p>
-                    ): (
-                    <p className="font-bold text-success ">Available</p>
-                    )}
-                </div>
-                
-                <p className="text-sm font-extralight line-clamp-1">{room.description}...</p>
-                <div className="btn btn-success my-2">View Room</div>
-            </div>
-          </Link>
-        ))}
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <div style={{ backgroundImage: "url('/sitting.jpg')" }} className="hero h-[80vh] mt-[60px] backdrop-blur-sm w-full" >
+      <div className="bg-[#000000c0] h-full w-full">
+        <div className="hero-content text-center text-neutral-content">
+          <div className="max-w-md">
+            <h1 className="mb-5 text-5xl lg:text-7xl font-bold">Find Your Perfect Stay</h1>
+            <p className="mb-5">Experience luxury and comfort in our meticulously designed rooms and venues. Whether you're here for a relaxing stay, a business meeting, or a special event, we have the perfect space for you.</p>
+            <a href="#rooms" className="btn btn-success">Explore Rooms</a>
+          </div>
+        </div>
       </div>
-      <h1 className="text-4xl w-full text-center font-extrabold opacity-80 text-gray-200 mt-5 lg:text-7xl lg:mt-8 mb-2 my-5">Conference Rooms</h1>
-      <p className="font-bold text-success mb-4 lg:mb-8">Find the room of your choice and conduct professional meetings</p>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:w-[80%] lg:w-[65%] gap-4">
-        {conferencerooms?.map((room, index)=>(
-            <Link href={`rooms/${room._id}`} key={room._id} className={`bg-gradient-to-tl from-slate-700 border border-gray-600 p-2 rounded-lg ${room.title === "Conference Room 1" &&"md:col-span-2 grid grid-cols-1 md:grid-cols-2" || room.title === "Conference Room 4" &&"md:col-span-2 grid grid-cols-1 md:grid-cols-2"}`}>
-                <Image src={room.image} alt={room.title} height={200} width={250} className={` w-full object-cover rounded-lg h-[150px] ${room.title === "Conference Room 1" &&"h-full " || room.title === "Conference Room 4" &&"h-full "}` }  />
-                <div className="p-2 flex flex-col justify-between">
-                  <h1 className="font-bold">{room.title}</h1>
-                  <div className=" w-full flex text-sm justify-between items-center my-1">
-                    <p className="font-extralight ">{room.category}</p>
-                    {room.taken? (
-                    <p className="font-bold text-red-600 ">Booked</p>
-                    ): (
-                    <p className="font-bold text-success">Available</p>
-                    )}
-                </div>
-                
-                <p className={`text-sm font-extralight line-clamp-1 ${room.title === "Conference Room 1" &&"md:line-clamp-5 mt-5 " || room.title === "Conference Room 4" &&"md:line-clamp-5 mt-5  "}`}>{room.description}...</p>
-                <div className="btn btn-success my-2">View Suite</div>
-                </div>
-                
-            </Link>
-        ))}
+        
       </div>
-      <h1 className="text-4xl w-full text-center font-extrabold opacity-80 text-gray-200 mt-5 lg:text-7xl lg:mt-8 mb-2 my-5">Wedding Venues</h1>
-      <p className="font-bold text-success mb-4 lg:mb-8">Find the best venue that matches your theme</p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:w-[80%] lg:w-[65%] gap-4">
-        {venues?.map((room, index)=>(
-            <Link href={`rooms/${room._id}`} key={room._id} className={`bg-gradient-to-tl from-slate-700 border border-gray-600 p-2 rounded-lg ${room.title === "Wedding Venue 2" &&"md:col-span-2 grid grid-cols-1 md:grid-cols-2" || room.title === "Wedding Venue 3" &&"md:col-span-2 grid grid-cols-1 md:grid-cols-2"}`}>
-                <Image src={room.image} alt={room.title} height={200} width={250} className={` w-full object-cover rounded-lg h-[150px] ${room.title === "Wedding Venue 2" &&"h-full " || room.title === "Wedding Venue 3" &&"h-full "}` }  />
-                <div className="p-2 flex flex-col justify-between">
-                  <h1 className="font-bold">{room.title}</h1>
-                  <div className=" w-full flex text-sm justify-between items-center my-1">
-                    <p className="font-extralight ">{room.category}</p>
-                    {room.taken? (
-                    <p className="font-bold text-red-600 ">Booked</p>
-                    ): (
-                    <p className="font-bold text-success ">Available</p>
-                    )}
-                </div>
-                
-                <p className={`text-sm font-extralight line-clamp-1 ${room.title === "Wedding Venue 2" &&"md:line-clamp-5 mt-5 " || room.title === "Wedding Venue 3" &&"md:line-clamp-5 mt-5  "}`}>{room.description}...</p>
-                <div className="btn btn-success my-2">View Suite</div>
-                </div>
-                
-            </Link>
-        ))}
-      </div>
-      <h1 className="text-4xl w-full text-center font-extrabold opacity-80 text-gray-200 mt-5 lg:text-7xl lg:mt-8 mb-2 my-5">Honeymoon Gazebo</h1>
-      <p className="font-bold text-success mb-4 lg:mb-8">Choose a gazebo and enjoy your lunch or dinner with your partner.</p>
+      {/* Main Content */}
+      <div className="container mx-auto px-4 py-16">
+        {error && <div className="alert alert-error shadow-lg mb-8">{error}</div>}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:w-[80%] lg:w-[65%] gap-4">
-        {gazebo?.map((room, index)=>(
-            <Link href={`rooms/${room._id}`} key={room._id} className={`bg-gradient-to-tl from-slate-700 border border-gray-600 p-2 rounded-lg ${room.title === "Gazebo 1" &&"md:col-span-2 grid grid-cols-1 md:grid-cols-2"}`}>
-                <Image src={room.image} alt={room.title} height={200} width={250} className={` w-full object-cover rounded-lg h-[150px] ${room.title === "Gazebo 1" &&"h-full "}` }  />
-                <div className="p-2 flex flex-col justify-between">
-                  <h1 className="font-bold">{room.title}</h1>
-                  <div className=" w-full flex text-sm justify-between items-center my-1">
-                    <p className="font-extralight ">{room.category}</p>
-                    {room.taken? (
-                    <p className="font-bold text-red-600 ">Booked</p>
-                    ): (
-                    <p className="font-bold text-success ">Available</p>
-                    )}
-                </div>
-                
-                <p className={`text-sm font-extralight line-clamp-1 ${room.title === "Gazebo 1" &&"md:line-clamp-5 mt-5 "}`}>{room.description}...</p>
-                <div className="btn btn-success my-2">View Suite</div>
-                </div>
-                
-            </Link>
-        ))}
+        {/* Bedrooms Section */}
+        <section id="rooms" className="mb-16">
+          <h2 className="text-4xl font-bold text-center mb-8">Bedrooms</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {bedrooms.map((room) => (
+              <RoomCard key={room._id} room={room} />
+            ))}
+          </div>
+        </section>
+
+        {/* Conference Rooms Section */}
+        <section id="conference" className="mb-16">
+          <h2 className="text-4xl font-bold text-center mb-8">Conference Rooms</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {conferencerooms.map((room) => (
+              <RoomCard key={room._id} room={room} isLarge={room.title === "Conference Room 1" || room.title === "Conference Room 4"} />
+            ))}
+          </div>
+        </section>
+
+        {/* Wedding Venues Section */}
+        <section id="venue" className="mb-16">
+          <h2 className="text-4xl font-bold text-center mb-8">Wedding Venues</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {venues.map((room) => (
+              <RoomCard key={room._id} room={room} isLarge={room.title === "Wedding Venue 2" || room.title === "Wedding Venue 3"} />
+            ))}
+          </div>
+        </section>
+
+        {/* Honeymoon Gazebo Section */}
+        <section id="gazebo" className="mb-16">
+          <h2 className="text-4xl font-bold text-center mb-8">Honeymoon Gazebo</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {gazebo.map((room) => (
+              <RoomCard key={room._id} room={room} isLarge={room.title === "Gazebo 1"} />
+            ))}
+          </div>
+        </section>
       </div>
     </div>
+  );
+}
+
+function RoomCard({ room, isLarge = false }: { room: Room; isLarge?: boolean }) {
+  return (
+    <Link href={`rooms/${room._id}`} className={`card bg-base-100 shadow-xl ${isLarge ? 'md:col-span-2' : ''}`}>
+      <figure>
+        <Image src={room.image} alt={room.title} width={500} height={300} className="w-full h-64 object-cover" />
+      </figure>
+      <div className="card-body">
+        <h3 className="card-title">
+          {room.title}
+          {room.taken ? (
+            <div className="badge badge-error">Booked</div>
+          ) : (
+            <div className="badge badge-success">Available</div>
+          )}
+        </h3>
+        <p className="text-sm opacity-70">{room.category}</p>
+        <p className={`${isLarge ? 'line-clamp-3' : 'line-clamp-2'}`}>{room.description}</p>
+        <div className="card-actions justify-end">
+          <button className="btn btn-success">View Details</button>
+        </div>
+      </div>
+    </Link>
   );
 }
