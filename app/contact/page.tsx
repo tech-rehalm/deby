@@ -20,7 +20,18 @@ export default function ContactPage() {
         setResult('Sending....')
         const formData = new FormData(event.target)
 
-        formData.append('access_key', "951966d0-4c89-44d5-9994-141b01990e40")
+        const accessKey = process.env.NEXT_PUBLIC_ACCESS_KEY;
+
+        if (accessKey) {
+            formData.append('access_key', accessKey);
+        } else {
+            console.error('Access key is not defined');
+            setResult('Access key is not defined. Please try again later.');
+            setIsLoading(false);
+            return;
+        }
+
+        // formData.append('access_key', "951966d0-4c89-44d5-9994-141b01990e40")
 
         try {
             const response = await fetch('https://api.web3forms.com/submit', {
