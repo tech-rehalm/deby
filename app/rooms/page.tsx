@@ -90,7 +90,7 @@ export default function RoomsPage() {
           <h2 className="text-4xl font-bold text-center mb-8">Wedding Venues</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {venues.map((room) => (
-              <RoomCard key={room._id} room={room} isLarge={room.title === "Wedding Venue 2" || room.title === "Wedding Venue 3"} />
+              <RoomCard key={room._id} room={room} isLarge={room.title === "Venue 2" || room.title === "Wedding Venue 3"} />
             ))}
           </div>
         </section>
