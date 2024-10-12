@@ -117,8 +117,9 @@ export default function BookingPage() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if(session?.user.role !== "admin"){
+    if(session?.user){
       toast.error("Please sign in to continue")
+      return
      }
     const formData = new FormData(event.currentTarget)
     const bookingDetails = Object.fromEntries(formData.entries())
@@ -152,7 +153,7 @@ export default function BookingPage() {
       
       <div className="card bg-base-100 shadow-xl mb-6">
         <figure>
-          <Image src={`${room.image}`} alt={room.title} width={400} height={300} className="w-full h-64 object-cover" />
+          <img src={`${room.image}`} alt={room.title} width={400} height={300} className="w-full h-64 object-cover" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{room.title}</h2>
