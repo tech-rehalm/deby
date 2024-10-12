@@ -154,7 +154,7 @@ export default function BookingPage() {
       
       <div className="card bg-base-100 shadow-xl mb-6">
         <figure>
-          <Image src={room.image} alt={room.title} width={400} height={300} className="w-full h-64 object-cover" />
+          <Image src={`${room.image}`} alt={room.title} width={400} height={300} className="w-full h-64 object-cover" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{room.title}</h2>

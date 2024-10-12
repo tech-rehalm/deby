@@ -88,7 +88,7 @@ export default function UserBookingsPage() {
                 <figure className="relative h-48">
                   <Link href={`/order/${order._id}`}>
                   <Image 
-                    src={order.image} 
+                    src={`${order.image}`} 
                     alt={order.room.title}
                     layout="fill"
                     objectFit="cover"

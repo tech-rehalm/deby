@@ -113,7 +113,7 @@ function RoomCard({ room, isLarge = false }: { room: Room; isLarge?: boolean }) 
   return (
     <Link href={`rooms/${room._id}`} className={`card bg-base-100 shadow-xl ${isLarge ? 'md:col-span-2' : ''}`}>
       <figure>
-        <Image src={room.image} alt={room.title} width={500} height={300} className="w-full h-64 object-cover" />
+        <Image src={`${room.image}`} alt={room.title} width={500} height={300} className="w-full h-64 object-cover" />
       </figure>
       <div className="card-body">
         <h3 className="card-title">

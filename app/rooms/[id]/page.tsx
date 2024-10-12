@@ -104,7 +104,7 @@ export default function RoomDetailsPage() {
     <div className="container mx-auto p-4 pt-[80px]">
       <div className="card lg:card-side bg-base-100 shadow-xl">
         <figure className="lg:w-1/2">
-          <Image src={room.image} alt={room.title} width={500} height={300} className="w-full h-full object-cover" />
+          <Image src={`${room.image}`} alt={room.title} width={500} height={300} className="w-full h-full object-cover" />
         </figure>
         <div className="card-body lg:w-1/2">
           <h2 className="card-title text-2xl text-success">{room.title}</h2>
