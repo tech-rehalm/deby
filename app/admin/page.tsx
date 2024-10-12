@@ -119,7 +119,6 @@ export default function AdminDashboard() {
   }, [session, status, router])
 
   if (loading) return <Loading/>
-  if (error) return <div className="text-center p-8 text-error">{error}</div>
   if (!dashboardData) return <div className="text-center p-8">No data available</div>
 
   return (
