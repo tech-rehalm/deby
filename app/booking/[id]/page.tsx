@@ -117,7 +117,7 @@ export default function BookingPage() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if(session?.user){
+    if(!session?.user){
       toast.error("Please sign in to continue")
       return
      }
