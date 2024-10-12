@@ -63,11 +63,11 @@ export default function UserBookingsPage() {
   }, [params.id])
 
   if (loading) return <Loading/>
-  if (error) return <div className="text-center pt-16 text-error">{error}</div>
-  if (!user) return <div className="text-center pt-16">User not found</div>
+  if (error) return  <Loading/>
+  if (!user) return <div className="text-center pt-16 mt-[60px]">User not found</div>
 
   return (
-    <div className="min-h-screen bg-success p-4 pt-16">
+    <div className="min-h-screen bg-success p-4 pt-16 mt-[60px]">
       <div className="container mx-auto">
         <h1 className="text-4xl font-bold text-center mb-8 text-success-content">Your Bookings</h1>
         
