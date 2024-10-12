@@ -18,6 +18,7 @@ export default function Users() {
             setUsers(data)
         } catch (error) {
             console.error("Failed to fetch users:", error)
+            toast.error("Failed to fetch users")
         } finally {
             setLoading(false)
         }
@@ -45,11 +46,10 @@ export default function Users() {
             if (!response.ok) {
                 toast.error("Failed to update user role")
                 throw new Error('Failed to update user role')
-            }else{
+            } else {
                 toast.success("User role updated successfully")
             }
 
-            // Update the user's role in the local state
             setUsers(users.map(user => 
                 user._id === userId ? { ...user, role: newRole } : user
             ))
@@ -64,12 +64,12 @@ export default function Users() {
             <div className="form-control mb-6">
                 <div className="flex">
                     <span className="btn btn-square btn-success">
-                        <Search className="h-6 w-6 " />
+                        <Search className="h-6 w-6" />
                     </span>
                     <input
                         type="text"
                         placeholder="Search users..."
-                        className="input input-bordered input-success w-full max-w-xs ml-5 mb-2"
+                        className="input input-bordered input-success w-full max-w-xs ml-2"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -80,31 +80,37 @@ export default function Users() {
                     <span className="loading loading-spinner loading-lg text-success"></span>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredUsers.map((user) => (
-                        <div
-                            key={user._id}
-                            className="card bg-base-100 shadow-sm hover:shadow-lg transition-all duration-300 shadow-success"
-                        >
-                            <div className="card-body">
-                                <h2 className="card-title text-success">{user.name}</h2>
-                                <p className="text-gray-400">ID: {user._id}</p>
-                                <p className="text-gray-400">{user.email}</p>
-                                <div className="flex items-center mt-2">
-                                    <span className="text-gray-400 mr-2">Role:</span>
-                                    <select
-                                        className="select select-bordered select-sm select-success"
-                                        value={user.role}
-                                        onChange={(e) => updateUserRole(user._id, e.target.value)}
-                                    >
-                                        <option value="user">User</option>
-                                        <option value="staff">Staff</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+                <div className="overflow-x-auto">
+                    <table className="table w-full">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>ID</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredUsers.map((user) => (
+                                <tr key={user._id} className="hover">
+                                    <td>{user.name}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user._id}</td>
+                                    <td>
+                                        <select
+                                            className="select select-bordered select-sm select-success w-full max-w-xs"
+                                            value={user.role}
+                                            onChange={(e) => updateUserRole(user._id, e.target.value)}
+                                        >
+                                            <option value="user">User</option>
+                                            <option value="staff">Staff</option>
+                                            <option value="admin">Admin</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             )}
             {!loading && filteredUsers.length === 0 && (

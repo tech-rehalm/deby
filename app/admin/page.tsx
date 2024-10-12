@@ -61,7 +61,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     const fetchDashboardData = async () => {
-      if (status === 'loading') return <Loading/>
+      if (status === 'loading') return
       if (!session || !session.user || session.user.role !== 'admin') {
         router.push('/signin')
         return
@@ -80,9 +80,8 @@ export default function AdminDashboard() {
 
         const users: User[] = await usersResponse.json()
         const bookings: Booking[] = await bookingsResponse.json()
-         const dat =await housesResponse.json()
-         const houses: House[] = await(dat.houses)
-
+        const dat = await housesResponse.json()
+        const houses: House[] = await(dat.houses)
 
         const totalRevenue = bookings.reduce((sum, booking) => sum + booking.totalPrice, 0)
 
@@ -118,8 +117,8 @@ export default function AdminDashboard() {
     fetchDashboardData()
   }, [session, status, router])
 
-  if (loading) return <Loading/>
-  if (error) return <Loading/>
+  if (loading) return <Loading />
+  if (error) return <Loading />
   if (!dashboardData) return <div className="text-center p-8">No data available</div>
 
   return (

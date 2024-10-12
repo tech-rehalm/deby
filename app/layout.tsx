@@ -39,7 +39,7 @@ export default function RootLayout({
       >
         <Providers>
         <div className="w-full min-h-screen text-gray-200 bg-gray-800">
-          <ToastContainer/>
+        <ToastContainer  theme="colored" />
           <Header/>
           {children}
           <Footer/>
