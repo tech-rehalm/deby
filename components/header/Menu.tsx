@@ -60,8 +60,8 @@ export default function Navbar() {
         {/* User Menu */}
         {session && session.user ? (
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar flex ">
-              <User className="h-4 w-4" /><span className="text-success">{session?.user.name}</span>
+            <label tabIndex={0} className="btn btn-success flex">
+              <User className="h-4 w-4" /><span >{session?.user.name}</span>
             </label>
             <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
               <li>
