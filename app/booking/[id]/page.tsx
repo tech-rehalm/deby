@@ -132,9 +132,7 @@ export default function BookingPage() {
       }
       
       const totalPrice = calculatePrice(room.category, room.field, days)
-      console.log(totalPrice);
     
-
       setBookingData({
         ...bookingDetails as Partial<BookingStore['bookingData']>,
         totalPrice,

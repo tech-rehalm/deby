@@ -119,6 +119,7 @@ export default function AdminDashboard() {
   }, [session, status, router])
 
   if (loading) return <Loading/>
+  if (error) return <Loading/>
   if (!dashboardData) return <div className="text-center p-8">No data available</div>
 
   return (
@@ -231,8 +232,8 @@ export default function AdminDashboard() {
                     <td>${booking.totalPrice.toFixed(2)}</td>
                     <td>
                       <span className={`badge ${
-                        booking.status === 'confirmed' ? 'badge-success' : 
-                        booking.status === 'cancelled' ? 'badge-error' : 
+                        booking.status === 'paid' ? 'badge-success' : 
+                        booking.status === 'pending' ? 'badge-error' : 
                         'badge-warning'
                       }`}>
                         {booking.status}

@@ -202,7 +202,7 @@ export default function Page() {
                     <td>${booking.totalPrice}</td>
                     <td className="hidden md:table-cell">
                       <select
-                        className="select select-bordered select-sm w-full max-w-xs"
+                        className="select select-bordered select-sm select-success text-success w-full max-w-xs"
                         value={booking.status}
                         onChange={(e) => updateBookingStatus(booking._id, e.target.value as "pending" | "paid")}
                       >

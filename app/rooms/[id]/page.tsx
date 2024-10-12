@@ -118,7 +118,6 @@ export default function RoomDetailsPage() {
           <div className="divider"></div>
           <div className="pricing">
             <p className="text-lg font-bold text-success">Pricing:</p>
-            <p>12 hours: ${pricing[12]} USD</p>
             <p>24 hours: ${pricing[24]} USD</p>
           </div>
           <div className="card-actions justify-end mt-4">
