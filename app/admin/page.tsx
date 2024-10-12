@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts'
+import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts'
 import { Users, DollarSign, Home, Calendar } from 'lucide-react'
 import AdminNavigation from '@/components/admin/AdminLayout'
 import Loading from '../loading'
@@ -124,7 +124,7 @@ export default function AdminDashboard() {
 
   return (
     <AdminNavigation>
-      <h1 className="text-4xl font-bold text-center mb-8">Admin Dashboard</h1>
+      <h1 className="text-4xl font-bold text-center mb-8 mt-[60px]">Admin Dashboard</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div className="card bg-base-100 shadow-xl">

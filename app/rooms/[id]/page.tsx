@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { toast } from 'react-toastify'
 import Loading from '@/app/loading'
+import { useSession } from 'next-auth/react'
 
 interface Room {
   _id: string
@@ -25,9 +26,11 @@ export default function RoomDetailsPage() {
   const params = useParams()
   const router = useRouter()
   const id = params.id
+  const { data: session } = useSession()
+  
 
   // Simulating current user role, replace with actual user role check
-  const currentUserRole = 'admin' // Assume 'admin' or 'user'
+  const currentUserRole = session?.user.role // Assume 'admin' or 'user'
 
   useEffect(() => {
     const fetchRoom = async () => {

@@ -73,7 +73,7 @@ export default function Services() {
                         <Star className='m-1'/>
                         <Star className='m-1'/>
                     </div>
-                    <Link href="/rooms" className='btn w-full btn-success text-sm '>Check available rooms</Link>
+                    <Link href="/rooms" className='btn w-full btn-success text-sm '>Check availability</Link>
                 </div>
                 <div className="card border w-full  border-gray-800 bg-gradient-to-br from-gray-800 p-3"> 
                     <h1 className="text-lg font-bold text-success">Wedding Venues</h1>
@@ -89,7 +89,7 @@ export default function Services() {
                         <Star className='m-1'/>
                         <Star className='m-1'/>
                     </div>
-                    <Link href="/rooms" className='btn w-full btn-success text-sm '>Check available rooms</Link>
+                    <Link href="/rooms" className='btn w-full btn-success text-sm '>Check available Venues</Link>
                 </div>
             </div>
     </div>

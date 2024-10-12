@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, FormEvent } from 'react'
+import React, { useState } from 'react'
 import { Loader2, Send, CheckCircle } from 'lucide-react'
 
 interface FormData {
@@ -30,8 +30,6 @@ export default function ContactPage() {
             setIsLoading(false);
             return;
         }
-
-        // formData.append('access_key', "951966d0-4c89-44d5-9994-141b01990e40")
 
         try {
             const response = await fetch('https://api.web3forms.com/submit', {

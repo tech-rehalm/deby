@@ -6,6 +6,8 @@ import Image from 'next/image'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import Loading from '@/app/loading'
+import { useSession } from 'next-auth/react'
+import { toast } from 'react-toastify'
 
 type Room = {
   _id: string
@@ -79,6 +81,8 @@ export default function BookingPage() {
   const params = useParams()
   const router = useRouter()
   const { bookingData, setBookingData } = useBookingStore()
+  const { data: session } = useSession()
+
 
   useEffect(() => {
     const fetchRoom = async () => {
@@ -113,13 +117,20 @@ export default function BookingPage() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if(session?.user.role !== "admin"){
+      toast.error("Please sign in to continue")
+     }
     const formData = new FormData(event.currentTarget)
     const bookingDetails = Object.fromEntries(formData.entries())
     
     if (room) {
       const checkIn = new Date(bookingDetails.checkIn as string)
       const checkOut = new Date(bookingDetails.checkOut as string)
-      const days = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24))
+      let days = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24))
+      if(days === 0){
+        days = 1
+      }
+      
       const totalPrice = calculatePrice(room.category, room.field, days)
       console.log(totalPrice);
     

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { redirect, useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
@@ -97,7 +97,6 @@ export default function CheckoutPage() {
         setLoading(false)
       }
     }
-
     fetchRoom()
   }, [params.id])
 
@@ -106,7 +105,8 @@ export default function CheckoutPage() {
     try {
       // Check if user is authenticated
       if (!session?.user?._id) {
-        throw new Error('User is not authenticated')
+        toast.error('Please sign in to place an order')
+        redirect("/signin")
       }
 
       // Place the order with the user ID from the session
@@ -116,7 +116,7 @@ export default function CheckoutPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          user: session.user._id,  // Add the user ID from session
+          user: session?.user._id,
           userDetails: {
             fullName: bookingData.fullName,
             age: parseInt(bookingData.age),
@@ -161,11 +161,10 @@ export default function CheckoutPage() {
       clearBookingData()
 
       // Redirect to payment page
-      toast.success("Order Placed")
+      toast.success("Order Placed successfully")
       router.push(`/order/${orderData._id}`)
     } catch (err) {
       console.log(err);
-      toast.error("Error trying to place order")
       setError("Error trying to place order")
     } finally {
       setPlacingOrder(false)
@@ -173,27 +172,33 @@ export default function CheckoutPage() {
   }
 
   if (loading) return <Loading/>
-  if (error) return <div className="text-center pt-16 text-error">{error}</div>
-  if (!room) return <div className="text-center pt-16">Room not found</div>
+  if (error) return <div className="text-center pt-16 text-error mt-[60px]">{error}</div>
+  if (!room) return <div className="text-center pt-16 mt-[60px]">Room not found</div>
 
   return (
-    <div className="container mx-auto p-4 pt-16">
+    <div className="container mx-auto p-4 pt-16 mt-[60px]">
       <h1 className="text-3xl font-bold text-center mb-6">Checkout</h1>
       
       <div className="card bg-base-100 shadow-xl mb-6">
         <div className="card-body">
           <h2 className="card-title">Booking Details</h2>
-          <p><strong>Room:</strong> {room.title}</p>
-          <p><strong>Full Name:</strong> {bookingData.fullName}</p>
-          <p><strong>Age:</strong> {bookingData.age}</p>
-          <p><strong>Address:</strong> {bookingData.address}</p>
-          <p><strong>Phone:</strong> {bookingData.phone}</p>
-          <p><strong>Check In:</strong> {bookingData.checkIn}</p>
-          <p><strong>Check Out:</strong> {bookingData.checkOut}</p>
-          <p><strong>Number of People:</strong> {bookingData.numOfPeople}</p>
-          <p><strong>Payment Method:</strong> {bookingData.paymentMethod}</p>
-          <p><strong>Special Requests:</strong> {bookingData.specialRequests || 'None'}</p>
-          <p><strong>Total Price:</strong> ${bookingData.totalPrice.toFixed(2)}</p>
+          <div className="flex flex-col md:flex-row">
+            <div className="w-full md:1/2">
+              <p><strong>Room:</strong> {room.title}</p>
+              <p><strong>Full Name:</strong> {bookingData.fullName}</p>
+              <p><strong>Age:</strong> {bookingData.age}</p>
+              <p><strong>Address:</strong> {bookingData.address}</p>
+              <p><strong>Phone:</strong> {bookingData.phone}</p>
+              <p><strong>Number of People:</strong> {bookingData.numOfPeople}</p>
+            </div>
+            <div className="w-full md:1/2">
+            <p><strong>Check In:</strong> {bookingData.checkIn}</p>
+              <p><strong>Check Out:</strong> {bookingData.checkOut}</p>
+              <p><strong>Payment Method:</strong> {bookingData.paymentMethod}</p>
+              <p><strong>Special Requests:</strong> {bookingData.specialRequests || 'None'}</p>
+              <p><strong>Total Price:</strong> ${bookingData.totalPrice.toFixed(2)}</p>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -6,12 +6,18 @@ import { Menu, Settings, ShoppingBagIcon, User2, UserCheck, X } from 'lucide-rea
 import { Hotel } from 'lucide-react'
 import {  House } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { redirect, usePathname } from 'next/navigation'
 import {motion} from "framer-motion"
+import { useSession } from 'next-auth/react'
 
 export default function AdminNavigation({children}:{children:React.ReactNode}) {
     const [open, setOpen] = useState(false)
     const pathName = usePathname()
+   const { data: session } = useSession()
+   if(session?.user.role !== "admin"){
+    redirect("/")
+   }
+
   return (
     <div className='w-full min-h-screen relative z-40  pt-[60px] '>
         {!open ? (

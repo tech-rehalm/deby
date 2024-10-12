@@ -13,6 +13,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js'
+import { toast } from 'react-toastify'
 
 ChartJS.register(
   CategoryScale,
@@ -72,12 +73,15 @@ export default function Page() {
   const updateBookingStatus = async (id: string, status: "pending" | "paid") => {
     try {
       const response = await fetch(`/api/booking/${id}`, {
-        method: 'POST',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status }),
       })
-      if (!response.ok) throw new Error('Failed to update booking status')
-      fetchBookings() // Refresh bookings after update
+      if (!response.ok) toast.error('Failed to update booking status')
+      if (response.ok) toast.success('Order status updated')
+      fetchBookings() 
+
+    // Refresh bookings after update
     } catch (error) {
       console.error('Error updating booking status:', error)
     }
@@ -142,19 +146,19 @@ export default function Page() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <div className="card bg-base-100 shadow-xl">
             <div className="card-body">
-              <h2 className="card-title text-success">Total Orders</h2>
+              <h2 className="card-title text-success">Total Bookings</h2>
               <p className="text-4xl font-bold">{totalOrders}</p>
             </div>
           </div>
           <div className="card bg-base-100 shadow-xl">
             <div className="card-body">
-              <h2 className="card-title text-success">Paid Orders</h2>
+              <h2 className="card-title text-success">Paid Bookings</h2>
               <p className="text-4xl font-bold">{paidOrders}</p>
             </div>
           </div>
           <div className="card bg-base-100 shadow-xl">
             <div className="card-body">
-              <h2 className="card-title text-success">Pending Orders</h2>
+              <h2 className="card-title text-success">Pending Bookings</h2>
               <p className="text-4xl font-bold">{pendingOrders}</p>
             </div>
           </div>
@@ -162,7 +166,7 @@ export default function Page() {
         
         <div className="card bg-base-100 shadow-xl mb-6">
           <div className="card-body">
-            <h2 className="card-title text-success mb-4">Order Statistics</h2>
+            <h2 className="card-title text-success mb-4">Bookings Statistics</h2>
             <Line data={chartData} options={chartOptions} />
           </div>
         </div>

@@ -16,6 +16,7 @@ type OrderDetails = {
   room: {
     title: string;
   };
+  title:string
   checkIn: string;
   checkOut: string;
   numOfPeople: number;
@@ -78,30 +79,36 @@ export default function OrderDetailsPage() {
   if (!order) return <div className="text-center pt-16">Order not found</div>;
 
   return (
-    <div className="container mx-auto p-4 pt-16">
+    <div className="container mx-auto p-4 pt-16 mt-[60px]">
       <h1 className="text-3xl font-bold text-center mb-6">Order Details</h1>
 
       <div className="card bg-base-100 shadow-xl mb-6">
         <div className="card-body">
           <h2 className="card-title">Booking Information</h2>
-          <p><strong>Order ID:</strong> {order._id}</p>
-          <p><strong>Room:</strong> {order.room.title}</p>
-          <p><strong>Full Name:</strong> {order.userDetails.fullName}</p>
-          <p><strong>Age:</strong> {order.userDetails.age}</p>
-          <p><strong>Address:</strong> {order.userDetails.address}</p>
-          <p><strong>Phone:</strong> {order.userDetails.phone}</p>
-          <p><strong>Check In:</strong> {new Date(order.checkIn).toLocaleDateString()}</p>
-          <p><strong>Check Out:</strong> {new Date(order.checkOut).toLocaleDateString()}</p>
-          <p><strong>Number of People:</strong> {order.numOfPeople}</p>
-          <p><strong>Payment Method:</strong> {order.paymentMethod}</p>
-          <p><strong>Special Requests:</strong> {order.specialRequests || 'None'}</p>
-          <p><strong>Total Price:</strong> ${order.totalPrice.toFixed(2)}</p>
-          <p>
-            <strong>Status:</strong>{' '}
-            <span className={`badge ${order.status === 'paid' ? 'badge-success' : 'badge-warning'}`}>
-              {order.status}
-            </span>
-          </p>
+          <div className="flex flex-col md:flex-row">
+            <div className="w-full md:w-1/2">
+              <p><strong>Order ID:</strong> {order._id}</p>
+              <p><strong>Suite:</strong> {order.title}</p>
+              <p><strong>Full Name:</strong> {order.userDetails.fullName}</p>
+              <p><strong>Age:</strong> {order.userDetails.age}</p>
+              <p><strong>Address:</strong> {order.userDetails.address}</p>
+              <p><strong>Phone:</strong> {order.userDetails.phone}</p>
+            </div>
+            <div className="w-full md:w-1/2">
+            <p><strong>Check In:</strong> {new Date(order.checkIn).toLocaleDateString()}</p>
+              <p><strong>Check Out:</strong> {new Date(order.checkOut).toLocaleDateString()}</p>
+              <p><strong>Number of People:</strong> {order.numOfPeople}</p>
+              <p><strong>Payment Method:</strong> {order.paymentMethod}</p>
+              <p><strong>Special Requests:</strong> {order.specialRequests || 'None'}</p>
+              <p><strong>Total Price:</strong> ${order.totalPrice.toFixed(2)}</p>
+              <p>
+                <strong>Status:</strong>{' '}
+                <span className={`badge ${order.status === 'paid' ? 'badge-success' : 'badge-warning'}`}>
+                  {order.status}
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -19,7 +19,7 @@ export function Footer() {
   return (
     <footer className="bg-base-200 text-base-content">
       <div className="container mx-auto px-4 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-center text-center sm:text-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 sm:content-center md:grid-cols-2 lg:grid-cols-4 gap-8 items-center text-center sm:text-start">
           <div>
             <h3 className="footer-title">About Us</h3>
             <Link href="/about" className="link link-hover block">Our Story</Link>
@@ -56,7 +56,7 @@ export function Footer() {
         </div>
         <div className="mt-10 pt-6 border-t border-base-300">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p>© 2024 Luxury Hotel - All rights reserved</p>
+            <p>© 2024 Deby Hotel - All rights reserved</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
               <Link href="/privacy" className="link link-hover">Privacy Policy</Link>
               <Link href="/terms" className="link link-hover">Terms of Service</Link>

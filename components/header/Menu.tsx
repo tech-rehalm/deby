@@ -2,12 +2,14 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import {  signOut, useSession } from 'next-auth/react'
 import { Home, Hotel, Info, Mail, Menu, User, LogIn, LogOut } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const { data: session } = useSession()
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
 
   const handleSignOut = () => {
     signOut({ callbackUrl: '/signin' })
@@ -28,7 +30,7 @@ export default function Navbar() {
           href={item.href}
           className={`flex items-center gap-2 p-2 transition-colors hover:text-primary ${
             mobile ? 'text-lg' : ''
-          }`}
+          } ${pathname === item.href && "bg-success text-black rounded-lg hover:text-black "} transition duration-500 hover:scale-110`}
           onClick={onClick}
         >
           <item.icon className="h-4 w-4" />
@@ -41,7 +43,7 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-40 w-full border-b bg-base-200 backdrop-blur">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2 text-success">
           <Hotel className="h-6 w-6" />
           <span className="font-bold hidden sm:inline-block">Deby Hotel</span>
         </Link>
@@ -58,13 +60,12 @@ export default function Navbar() {
         {/* User Menu */}
         {session && session.user ? (
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <User className="h-4 w-4" />
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar flex ">
+              <User className="h-4 w-4" /><span className="text-success">{session?.user.name}</span>
             </label>
             <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
               <li>
                 <span className="font-bold">{session.user.name}</span>
-                <small className="text-sm text-muted-foreground">{session.user.email}</small>
               </li>
               {session.user.role === 'admin' && (
                 <li>
@@ -78,7 +79,7 @@ export default function Navbar() {
                 <Link href="/profile">Profile</Link>
               </li>
               <li>
-                <button onClick={handleSignOut} className="text-left">
+                <button onClick={handleSignOut} className="text-left btn btn-success">
                   <LogOut className="h-4 w-4 mr-2" />
                   Sign out
                 </button>

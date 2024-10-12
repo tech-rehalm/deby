@@ -48,7 +48,7 @@ export default function RoomsPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div style={{ backgroundImage: "url('/sitting.jpg')" }} className="hero h-[80vh] mt-[60px] backdrop-blur-sm w-full" >
+      <div style={{ backgroundImage: "url('/sitting.jpg')" }} className="hero h-[80vh] mt-[70px] backdrop-blur-sm w-full flex items-center justify-center" >
       <div className="bg-[#000000c0] h-full w-full">
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md">
