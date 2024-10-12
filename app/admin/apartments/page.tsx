@@ -2,8 +2,11 @@
 
 import AdminNavigation from '@/components/admin/AdminLayout'
 import { Upload } from 'lucide-react'
-import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react'
+import React, { useEffect, useState, FormEvent } from 'react'
 import { toast } from 'react-toastify'
+import * as filestack from 'filestack-js'
+
+const filestackClient = filestack.init(process.env.NEXT_PUBLIC_FILESTACK_API_KEY as string)
 
 interface House {
   id: number
@@ -20,28 +23,24 @@ export default function AdminSuiteManagement() {
   const [field, setField] = useState<string>("")
   const [description, setDescription] = useState<string>("")
   const [category, setCategory] = useState<string>("")
-  const [image, setImage] = useState<File | null>(null)
-  const [imagePreview, setImagePreview] = useState<string | null>(null)
+  const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [houses, setHouses] = useState<House[]>([])
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string)
-      }
-      reader.readAsDataURL(file)
-      setImage(file)
-    }
+  const uploadImage = () => {
+    filestackClient.picker({
+      onUploadDone: (res) => {
+        const uploadedFileUrl = res.filesUploaded[0].url
+        setImageUrl(uploadedFileUrl)
+      },
+    }).open()
   }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
 
-    if (!title || !field || !description || !imagePreview || !category) {
+    if (!title || !field || !description || !imageUrl || !category) {
       toast.warning("Please fill all fields and upload an image.")
       setLoading(false)
       return
@@ -57,7 +56,7 @@ export default function AdminSuiteManagement() {
           title,
           field,
           description,
-          image: imagePreview,
+          image: imageUrl,
           category,
         }),
       })
@@ -70,8 +69,7 @@ export default function AdminSuiteManagement() {
         setField("")
         setDescription("")
         setCategory("")
-        setImagePreview(null)
-        setImage(null)
+        setImageUrl(null)
       } else {
         const errorData = await response.json()
         toast.warning(errorData.error || "Error creating a suite")
@@ -115,14 +113,16 @@ export default function AdminSuiteManagement() {
                   <label htmlFor='image' className="label cursor-pointer justify-center">
                     <span className="label-text sr-only">Upload Image</span>
                     <div className="w-32 h-32 rounded-full bg-base-300 flex items-center justify-center text-primary overflow-hidden">
-                      {imagePreview ? (
-                        <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                      {imageUrl ? (
+                        <img src={imageUrl} alt="Preview" className="w-full h-full object-cover" />
                       ) : (
                         <Upload size={40} />
                       )}
                     </div>
                   </label>
-                  <input type="file" className="hidden" id="image" onChange={handleImageChange} accept="image/*" />
+                  <button type="button" onClick={uploadImage} className="btn btn-outline btn-primary mt-2">
+                    Upload Image
+                  </button>
                 </div>
                 
                 <div className="form-control">

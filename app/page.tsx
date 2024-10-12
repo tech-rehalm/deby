@@ -57,6 +57,7 @@ export function Footer() {
         <div className="mt-10 pt-6 border-t border-base-300">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p>© 2024 Deby Hotel - All rights reserved</p>
+            <img src="https://dash.cloudflare.com/8625d3467a94dd91af04443541d3a3e0/images/gaze2.webp" alt="image" />
             <div className="flex space-x-4 mt-4 md:mt-0">
               <Link href="/privacy" className="link link-hover">Privacy Policy</Link>
               <Link href="/terms" className="link link-hover">Terms of Service</Link>

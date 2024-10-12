@@ -13,9 +13,12 @@ export async function POST(req:any) {
     
     try {
         const houses = await House.find();
-        const number = houses.length + 1;  // Dynamically generate house number
-
+        const number = houses.length + 1;
+        console.log(houses.length);
+        
         const houseExist = await House.findOne({ number });
+        console.log(number);
+        
         if (houseExist) {
             return NextResponse.json({ error: "House with the same number exists" }, { status: 400 });
         }
