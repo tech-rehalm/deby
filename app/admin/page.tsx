@@ -105,6 +105,7 @@ export default function AdminDashboard() {
           monthlyRevenue: Object.entries(monthlyRevenue).map(([month, revenue]) => ({ month, revenue })),
           bookingStatusDistribution: Object.entries(bookingStatusDistribution).map(([status, count]) => ({ status, count }))
         }
+        console.log(data)
 
         setDashboardData(data)
       } catch (err) {
