@@ -109,7 +109,9 @@ export default function AdminDashboard() {
 
         setDashboardData(data)
       } catch (err) {
-        setError('Failed to load dashboard data')
+        setError("Failed to fetch data")
+        console.log(err);
+        
       } finally {
         setLoading(false)
       }
@@ -119,7 +121,6 @@ export default function AdminDashboard() {
   }, [session, status, router])
 
   if (loading) return <Loading />
-  if (error) return <div className='w-full h-screen flex items-center justify-center'>Error fetching data <p className="text-error">{error}</p> </div>
   if (!dashboardData) return <div className="text-center p-8">No data available</div>
 
   return (
