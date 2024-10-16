@@ -121,7 +121,7 @@ export default function AdminDashboard() {
   }, [session, status, router])
 
   if (loading) return <Loading />
-  if (!dashboardData) return <div className="text-center p-8">No data available</div>
+  if (!dashboardData) <Loading />
   if (error) return <Loading/>
 
   return (
@@ -135,7 +135,7 @@ export default function AdminDashboard() {
               Total Users
               <Users className="h-4 w-4 text-primary" />
             </h2>
-            <p className="text-2xl font-bold">{dashboardData.totalUsers}</p>
+            <p className="text-2xl font-bold">{dashboardData?.totalUsers}</p>
           </div>
         </div>
         <div className="card bg-base-100 shadow-xl">
@@ -144,7 +144,7 @@ export default function AdminDashboard() {
               Total Bookings
               <Calendar className="h-4 w-4 text-primary" />
             </h2>
-            <p className="text-2xl font-bold">{dashboardData.totalBookings}</p>
+            <p className="text-2xl font-bold">{dashboardData?.totalBookings}</p>
           </div>
         </div>
         <div className="card bg-base-100 shadow-xl">
@@ -153,7 +153,7 @@ export default function AdminDashboard() {
               Total Revenue
               <DollarSign className="h-4 w-4 text-primary" />
             </h2>
-            <p className="text-2xl font-bold">${dashboardData.totalRevenue.toFixed(2)}</p>
+            <p className="text-2xl font-bold">${dashboardData?.totalRevenue.toFixed(2)}</p>
           </div>
         </div>
         <div className="card bg-base-100 shadow-xl">
@@ -162,7 +162,7 @@ export default function AdminDashboard() {
               Total Houses
               <Home className="h-4 w-4 text-primary" />
             </h2>
-            <p className="text-2xl font-bold">{dashboardData.totalHouses}</p>
+            <p className="text-2xl font-bold">{dashboardData?.totalHouses}</p>
           </div>
         </div>
       </div>
@@ -173,7 +173,7 @@ export default function AdminDashboard() {
             <h2 className="card-title">Monthly Revenue</h2>
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={dashboardData.monthlyRevenue}>
+                <LineChart data={dashboardData?.monthlyRevenue}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
                   <YAxis />
@@ -193,7 +193,7 @@ export default function AdminDashboard() {
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
-                    data={dashboardData.bookingStatusDistribution}
+                    data={dashboardData?.bookingStatusDistribution}
                     cx="50%"
                     cy="50%"
                     labelLine={false}
@@ -201,7 +201,7 @@ export default function AdminDashboard() {
                     fill="#8884d8"
                     dataKey="count"
                   >
-                    {dashboardData.bookingStatusDistribution.map((entry, index) => (
+                    {dashboardData?.bookingStatusDistribution.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
@@ -228,7 +228,7 @@ export default function AdminDashboard() {
                 </tr>
               </thead>
               <tbody>
-                {dashboardData.recentBookings.map((booking) => (
+                {dashboardData?.recentBookings.map((booking) => (
                   <tr key={booking._id}>
                     <td>{booking.title}</td>
                     <td>${booking.totalPrice.toFixed(2)}</td>

@@ -14,7 +14,7 @@ export default function Hero() {
         transition={{ duration: 10, ease: "easeOut" }}
         className="absolute w-full h-full z-[0]"
       >
-        <Image src="/hotelfront.jpg" alt="Hotel Front" layout="fill" objectFit="cover" quality={100} />
+        <img src="/hotelfront.jpg" alt="Hotel Front" className='w-full h-full'/>
       </motion.div>
       <motion.div 
         initial={{ opacity: 0 }}
