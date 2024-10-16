@@ -122,6 +122,7 @@ export default function AdminDashboard() {
 
   if (loading) return <Loading />
   if (!dashboardData) return <div className="text-center p-8">No data available</div>
+  if (error) return <Loading/>
 
   return (
     <AdminNavigation>
