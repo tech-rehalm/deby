@@ -74,8 +74,14 @@ export default function AdminDashboard() {
           fetch('/api/apartments')
         ])
 
-        if (!usersResponse.ok || !bookingsResponse.ok || !housesResponse.ok) {
-          throw new Error('Failed to fetch dashboard data')
+        if (!usersResponse.ok ) {
+          throw new Error('Failed to fetch users')
+        }
+        if (!bookingsResponse.ok ) {
+          throw new Error('Failed to fetch bokings')
+        }
+        if (!housesResponse.ok) {
+          throw new Error('Failed to fetch houses')
         }
 
         const users: User[] = await usersResponse.json()
@@ -106,8 +112,8 @@ export default function AdminDashboard() {
           bookingStatusDistribution: Object.entries(bookingStatusDistribution).map(([status, count]) => ({ status, count }))
         }
         console.log(data)
-
         setDashboardData(data)
+        setLoading(false)
       } catch (err) {
         setError("Failed to fetch data")
         console.log(err);
