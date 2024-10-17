@@ -59,7 +59,7 @@ export default function AdminDashboard() {
   const { data: session, status } = useSession()
   const router = useRouter()
 
-  useEffect(() => {
+  
     const fetchDashboardData = async () => {
       if (status === 'loading') return
       if (!session || !session.user || session.user.role !== 'admin') {
@@ -116,12 +116,12 @@ export default function AdminDashboard() {
         setLoading(false)
       }
     }
-
+    useEffect(() => {
     fetchDashboardData()
   }, [session, status, router])
 
   if (loading) return <Loading />
-  if (!dashboardData) <Loading />
+  if (!dashboardData) fetchDashboardData()
   if (error) return <Loading/>
 
   return (
