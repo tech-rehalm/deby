@@ -127,7 +127,7 @@ export default function AdminDashboard() {
   }, [session, status, router])
 
   if (loading) return <Loading />
-  if (!dashboardData) fetchDashboardData()
+  if (!dashboardData) return <div className="flex items-center justify-center w-full h-screen">Taking a bit longer please wait</div>
   if (error) return <Loading/>
 
   return (
