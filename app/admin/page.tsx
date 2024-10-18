@@ -130,7 +130,7 @@ export default function AdminDashboard() {
 
   if (loading) return <Loading />
   if (!dashboardData) fetchDashboardData()
-  if (error) return <div className="w-full h-screen text-lg flex itemes-center justify-center">{error}</div>
+  if (error) return fetchDashboardData()
 
   return (
     <AdminNavigation>
