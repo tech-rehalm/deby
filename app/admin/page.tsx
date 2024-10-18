@@ -124,8 +124,6 @@ export default function AdminDashboard() {
     }
     useEffect(() => {
     fetchDashboardData()
-    fetchDashboardData()
-    fetchDashboardData()
   }, [session, status, router])
 
   if (loading) return <Loading />
