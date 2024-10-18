@@ -75,13 +75,13 @@ export default function AdminDashboard() {
         ])
 
         if (!usersResponse.ok ) {
-          throw new Error('Failed to fetch users')
+          console.log('Failed to fetch users')
         }
         if (!bookingsResponse.ok ) {
-          throw new Error('Failed to fetch bokings')
+          console.log('Failed to fetch bokings')
         }
         if (!housesResponse.ok) {
-          throw new Error('Failed to fetch houses')
+          console.log('Failed to fetch houses')
         }
 
         const users: User[] = await usersResponse.json()
@@ -129,8 +129,8 @@ export default function AdminDashboard() {
   }, [session, status, router])
 
   if (loading) return <Loading />
-  if (!dashboardData) return <div className="flex items-center justify-center w-full h-screen">Taking a bit longer please wait</div>
-  if (error) return <Loading/>
+  if (!dashboardData) fetchDashboardData()
+  if (error) return <div className="w-full h-screen text-lg flex itemes-center justify-center">{error}</div>
 
   return (
     <AdminNavigation>

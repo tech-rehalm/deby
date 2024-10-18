@@ -4,7 +4,7 @@ import { Star, Bed, Users, Heart, Gift, ChevronRight, MapPin, Phone, Mail } from
 
 export default function Services() {
   return (
-    <div className="min-h-screen gray-800">
+    <div className="min-h-screen bg-gray-800">
 
       {/* Services Overview */}
       <div className="container mx-auto py-16 px-4">
@@ -16,7 +16,7 @@ export default function Services() {
             { title: 'Restaurants', icon: <Gift className="w-12 h-12 mb-4 text-success" />, description: 'World-class dining experiences' },
             { title: 'Conferencing', icon: <Users className="w-12 h-12 mb-4 text-success" />, description: 'Modern meeting and event spaces' },
           ].map((service, index) => (
-            <div key={index} className="card bg-base-100 shadow-xl">
+            <div key={index} className="card bg-gray-900 shadow-xl">
               <div className="card-body items-center text-center">
                 {service.icon}
                 <h3 className="card-title">{service.title}</h3>
@@ -44,7 +44,7 @@ export default function Services() {
               { title: 'Honeymoon Suites', image: '/gaze4.webp', description: 'Romantic getaways', price: 'From $299/night' },
               { title: 'Wedding Venues', image: '/venue5.jpg', description: 'Unforgettable celebrations', price: 'Custom packages' },
             ].map((offering, index) => (
-              <div key={index} className="card bg-base-100 shadow-xl">
+              <div key={index} className="card bg-gray-900 shadow-xl">
                 <figure><img src={offering.image} alt={offering.title} className="h-48 w-full object-cover" /></figure>
                 <div className="card-body">
                   <h3 className="card-title">{offering.title}</h3>
@@ -79,7 +79,7 @@ export default function Services() {
               { name: 'Jane Smith', comment: 'The perfect venue for our company retreat. Highly recommended!', rating: 5 },
               { name: 'Alex Johnson', comment: 'Luxurious rooms and world-class dining. A truly unforgettable experience.', rating: 5 },
             ].map((testimonial, index) => (
-              <div key={index} className="card bg-base-100 shadow-xl">
+              <div key={index} className="card bg-gray-900 shadow-xl">
                 <div className="card-body">
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
