@@ -69,7 +69,7 @@ export default function Users() {
                     <input
                         type="text"
                         placeholder="Search users..."
-                        className="input input-bordered input-success w-full max-w-xs ml-2"
+                        className="input input-bordered input-success bg-gray-800 w-full max-w-xs ml-2"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -98,7 +98,7 @@ export default function Users() {
                                     <td>{user._id}</td>
                                     <td>
                                         <select
-                                            className="select select-bordered select-sm select-success w-full max-w-xs"
+                                            className="select select-bordered select-sm select-success bg-gray-800 w-full max-w-xs"
                                             value={user.role}
                                             onChange={(e) => updateUserRole(user._id, e.target.value)}
                                         >

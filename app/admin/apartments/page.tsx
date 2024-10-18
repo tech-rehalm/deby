@@ -105,7 +105,7 @@ export default function AdminSuiteManagement() {
       <div className="p-4 min-h-screen bg-base-200">
         <h1 className="text-4xl font-bold mb-6 text-primary">Deby Hotel</h1>
         <div className="flex flex-col lg:flex-row gap-6">
-          <div className="card bg-base-100 shadow-xl lg:w-1/3">
+          <div className="card bg-gray-800 shadow-xl lg:w-1/3">
             <div className="card-body bg-gray-900">
               <h2 className="card-title text-center text-2xl mb-4">Add a Suite</h2>
               <form onSubmit={handleSubmit} className="space-y-4 ">

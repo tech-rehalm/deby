@@ -63,7 +63,7 @@ export default function Navbar() {
             <label tabIndex={0} className="btn btn-success flex">
               <User className="h-4 w-4" /><span >{session?.user.name}</span>
             </label>
-            <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+            <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-gray-900 rounded-box w-52">
               <li>
                 <span className="font-bold">{session.user.name}</span>
               </li>
