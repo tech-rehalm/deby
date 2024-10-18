@@ -83,8 +83,8 @@ export default function AdminNavigation({ children }: { children: React.ReactNod
                 </button>
               )}
             </div>
-            <div className="flex-1">
-              <h1 className="text-2xl font-semibold text-success pl-[100px] bg-gray-800">Welcome, Admin</h1>
+            <div className="flex-1 bg-gray-800">
+              <h1 className="text-2xl font-semibold text-success pl-[100px] ">Welcome, Admin</h1>
             </div>
             <div className="flex-none">
               <button className="btn btn-ghost btn-circle">
