@@ -81,7 +81,7 @@ export default function ProfilePage() {
     <div className="container mx-auto p-8">
       <h1 className="text-3xl font-bold text-center mb-8">User Profile</h1>
       
-      <div className="card bg-base-100 shadow-xl">
+      <div className="card bg-gray-900 shadow-xl">
         <div className="card-body">
           <h2 className="card-title mb-4">Current Information</h2>
           <p><strong>Name:</strong> {user.name}</p>
@@ -102,7 +102,7 @@ export default function ProfilePage() {
               id="name"
               name="name" 
               defaultValue={user.name}
-              className="input input-bordered input-success" 
+              className="input input-bordered bg-gray-800 input-success" 
               required 
             />
           </div>
@@ -115,7 +115,7 @@ export default function ProfilePage() {
               id="email"
               name="email" 
               defaultValue={user.email}
-              className="input input-bordered input-success" 
+              className="input input-bordered bg-gray-800 input-success" 
               required 
             />
           </div>

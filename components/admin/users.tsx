@@ -59,7 +59,7 @@ export default function Users() {
     }
 
     return (
-        <div className='min-h-screen bg-base-200 p-6'>
+        <div className='min-h-screen bg-gray-800 p-6 mt-[50px]'>
             <h1 className="text-3xl font-bold text-success mb-6">User Management</h1>
             <div className="form-control mb-6">
                 <div className="flex">

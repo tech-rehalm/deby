@@ -33,7 +33,7 @@ export default function FeaturesSection() {
       initial="hidden"
       animate={controls}
       variants={containerVariants}
-      className="bg-base-200 py-12 px-4 sm:px-6 lg:px-8"
+      className="bg-gray-800 py-12 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-8 items-center">
@@ -51,7 +51,7 @@ export default function FeaturesSection() {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
               }}
-              className="card bg-base-100 shadow-xl"
+              className="card bg-gray-900 shadow-xl"
             >
               <div className="card-body">
                 <div className="space-y-4">
@@ -130,7 +130,7 @@ function FeatureCard({ icon, title }: { icon: React.ReactNode; title: string }) 
         visible: { opacity: 1, y: 0 },
       }}
       whileHover={{ scale: 1.05 }}
-      className="card bg-base-100 shadow-xl"
+      className="card bg-gray-900 shadow-xl"
     >
       <div className="card-body flex-row items-center">
         <div className="mr-4 text-success">

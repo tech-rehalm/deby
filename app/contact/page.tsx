@@ -58,7 +58,7 @@ export default function ContactPage() {
     }
 
     return (
-        <div className="min-h-screen bg-base-200 flex items-center justify-center px-4 pt-[60px]">
+        <div className="min-h-screen bg-gray-800 flex items-center justify-center px-4 pt-[60px]">
             <div className="max-w-4xl w-full bg-base-100 shadow-xl rounded-lg overflow-hidden">
                 <div className="flex flex-col md:flex-row">
                     <div className="md:w-1/2 p-8 bg-success text-success-content">
@@ -71,7 +71,7 @@ export default function ContactPage() {
                         </div>
                     </div>
                     <div className="md:w-1/2 p-8">
-                        <form onSubmit={onSubmit} className="space-y-4">
+                        <form onSubmit={onSubmit} className="space-y-4 bg-gray-900">
                             <div>
                                 <label htmlFor="name" className="label">
                                     <span className="label-text">Name</span>

@@ -106,9 +106,9 @@ export default function AdminSuiteManagement() {
         <h1 className="text-4xl font-bold mb-6 text-primary">Deby Hotel</h1>
         <div className="flex flex-col lg:flex-row gap-6">
           <div className="card bg-base-100 shadow-xl lg:w-1/3">
-            <div className="card-body">
+            <div className="card-body bg-gray-900">
               <h2 className="card-title text-center text-2xl mb-4">Add a Suite</h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4 ">
                 <div className="form-control">
                   <label htmlFor='image' className="label cursor-pointer justify-center">
                     <span className="label-text sr-only">Upload Image</span>
@@ -134,7 +134,7 @@ export default function AdminSuiteManagement() {
                     id="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="input input-bordered input-success w-full"
+                    className="input input-bordered bg-gray-800 input-success w-full"
                     placeholder="Enter house title"
                   />
                 </div>
@@ -148,7 +148,7 @@ export default function AdminSuiteManagement() {
                     id="field"
                     value={field}
                     onChange={(e) => setField(e.target.value)}
-                    className="input input-bordered input-success w-full"
+                    className="input input-bordered bg-gray-800 input-success w-full"
                     placeholder="Enter house field"
                   />
                 </div>
@@ -162,7 +162,7 @@ export default function AdminSuiteManagement() {
                     id="category"
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="input input-bordered input-success w-full"
+                    className="input input-bordered bg-gray-800 input-success w-full"
                     placeholder="Enter suite category"
                   />
                 </div>
@@ -175,7 +175,7 @@ export default function AdminSuiteManagement() {
                     id="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="textarea textarea-bordered textarea-success h-24"
+                    className="textarea textarea-bordered textarea-success bg-gray-800 h-24"
                     placeholder="Enter house description"
                   ></textarea>
                 </div>

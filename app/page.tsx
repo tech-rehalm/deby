@@ -1,8 +1,6 @@
 import Link from 'next/link'
-import { ShieldCheck, UserPlus, LogIn, Zap } from 'lucide-react'
 import Hero from '@/components/Hero'
 import Services from '@/components/Services'
-import FeaturesSection from '@/components/Features'
 import { Facebook, Instagram, Twitter } from 'lucide-react'
 
 export default function Component() {
@@ -10,14 +8,13 @@ export default function Component() {
     <div className="min-h-screen bg-base-200 relative">
       <Hero/>
       <Services/>
-      <FeaturesSection/>
     </div>
   )
 }
 
 export function Footer() {
   return (
-    <footer className="bg-base-200 text-base-content">
+    <footer className="bg-gray-800 text-base-content">
       <div className="container mx-auto px-4 py-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 sm:content-center md:grid-cols-2 lg:grid-cols-4 gap-8 items-center text-center sm:text-start">
           <div>

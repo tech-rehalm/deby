@@ -38,7 +38,7 @@ export default function AdminNavigation({ children }: { children: React.ReactNod
   const toggleSidebar = () => setIsOpen(!isOpen)
 
   return (
-    <div className="flex min-h-screen bg-base-200 ">
+    <div className="flex min-h-screen bg-gray-800 ">
       {/* Sidebar */}
       <aside className={`
         ${isOpen ? 'w-64' : 'w-20'} 
@@ -99,7 +99,7 @@ export default function AdminNavigation({ children }: { children: React.ReactNod
             </div>
           </div>
         </header>
-        <main className="flex-1 bg-base-200 mt-[134px] p-6">
+        <main className="flex-1 bg-gray-800 p-6">
           {children}
         </main>
       </div>

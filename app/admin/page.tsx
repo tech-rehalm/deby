@@ -124,6 +124,8 @@ export default function AdminDashboard() {
     }
     useEffect(() => {
     fetchDashboardData()
+    fetchDashboardData()
+    fetchDashboardData()
   }, [session, status, router])
 
   if (loading) return <Loading />
@@ -132,10 +134,10 @@ export default function AdminDashboard() {
 
   return (
     <AdminNavigation>
-      <h1 className="text-4xl font-bold text-center mb-8 mt-[60px]">Admin Dashboard</h1>
+      <h1 className="text-4xl font-bold text-center mb-8 mt-[60px] ">Admin Dashboard</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-gray-900 shadow-xl">
           <div className="card-body">
             <h2 className="card-title text-sm font-medium flex justify-between">
               Total Users
@@ -144,7 +146,7 @@ export default function AdminDashboard() {
             <p className="text-2xl font-bold">{dashboardData?.totalUsers}</p>
           </div>
         </div>
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-gray-900 shadow-xl">
           <div className="card-body">
             <h2 className="card-title text-sm font-medium flex justify-between">
               Total Bookings
@@ -153,7 +155,7 @@ export default function AdminDashboard() {
             <p className="text-2xl font-bold">{dashboardData?.totalBookings}</p>
           </div>
         </div>
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-gray-900 shadow-xl">
           <div className="card-body">
             <h2 className="card-title text-sm font-medium flex justify-between">
               Total Revenue
@@ -162,7 +164,7 @@ export default function AdminDashboard() {
             <p className="text-2xl font-bold">${dashboardData?.totalRevenue.toFixed(2)}</p>
           </div>
         </div>
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-gray-900 shadow-xl">
           <div className="card-body">
             <h2 className="card-title text-sm font-medium flex justify-between">
               Total Houses
@@ -174,7 +176,7 @@ export default function AdminDashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-gray-900 shadow-xl">
           <div className="card-body">
             <h2 className="card-title">Monthly Revenue</h2>
             <div className="h-[300px]">
@@ -192,7 +194,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-gray-900 shadow-xl">
           <div className="card-body">
             <h2 className="card-title">Booking Status Distribution</h2>
             <div className="h-[300px]">
@@ -220,7 +222,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      <div className="card bg-base-100 shadow-xl">
+      <div className="card bg-gray-900 shadow-xl">
         <div className="card-body">
           <h2 className="card-title">Recent Bookings</h2>
           <p className="text-sm text-base-content text-opacity-60">Overview of the latest bookings</p>

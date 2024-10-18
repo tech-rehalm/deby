@@ -5,9 +5,9 @@ import { redirect, useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { useSession } from 'next-auth/react'  // Import useSession from next-auth
+import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
-import Loading from '@/app/loading'
+import { CreditCard, Calendar, Users, Phone, MapPin, FileText, DollarSign, Loader, AlertCircle, CheckCircle } from 'lucide-react'
 
 type BookingStore = {
   bookingData: {
@@ -22,7 +22,7 @@ type BookingStore = {
     numOfPeople: string
     paymentMethod: string
     specialRequests: string
-    totalPrice: number  // Added totalPrice to the store
+    totalPrice: number
   }
   setBookingData: (data: Partial<BookingStore['bookingData']>) => void
   clearBookingData: () => void
@@ -43,7 +43,7 @@ const useBookingStore = create<BookingStore>()(
         numOfPeople: '',
         paymentMethod: '',
         specialRequests: '',
-        totalPrice: 0,  // Initialize totalPrice
+        totalPrice: 0,
       },
       setBookingData: (data) =>
         set((state) => ({ bookingData: { ...state.bookingData, ...data } })),
@@ -61,7 +61,7 @@ const useBookingStore = create<BookingStore>()(
             numOfPeople: '',
             paymentMethod: '',
             specialRequests: '',
-            totalPrice: 0,  // Reset totalPrice
+            totalPrice: 0,
           },
         }),
     }),
@@ -72,7 +72,7 @@ const useBookingStore = create<BookingStore>()(
 )
 
 export default function CheckoutPage() {
-  const { data: session } = useSession()  // Get the session
+  const { data: session } = useSession()
   const [room, setRoom] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -80,7 +80,6 @@ export default function CheckoutPage() {
   const params = useParams()
   const router = useRouter()
   const { bookingData, clearBookingData } = useBookingStore()
-
 
   useEffect(() => {
     const fetchRoom = async () => {
@@ -103,13 +102,11 @@ export default function CheckoutPage() {
   const placeOrder = async () => {
     setPlacingOrder(true)
     try {
-      // Check if user is authenticated
       if (!session?.user?._id) {
         toast.error('Please sign in to place an order')
         redirect("/signin")
       }
 
-      // Place the order with the user ID from the session
       const orderResponse = await fetch('/api/order', {
         method: 'POST',
         headers: {
@@ -141,7 +138,6 @@ export default function CheckoutPage() {
 
       const orderData = await orderResponse.json()
 
-      // Update house status
       const houseResponse = await fetch(`/api/house/${params.id}`, {
         method: 'PUT',
         headers: {
@@ -157,10 +153,7 @@ export default function CheckoutPage() {
         throw new Error('Failed to update house status')
       }
 
-      // Clear booking data from Zustand store
       clearBookingData()
-
-      // Redirect to payment page
       toast.success("Order Placed successfully")
       router.push(`/order/${orderData._id}`)
     } catch (err) {
@@ -171,51 +164,72 @@ export default function CheckoutPage() {
     }
   }
 
-  if (loading) return <Loading/>
-  if (error) return <div className="text-center pt-16 text-error mt-[60px]">{error}</div>
-  if (!room) return <div className="text-center pt-16 mt-[60px]">Room not found</div>
+  if (loading) return (
+    <div className="flex justify-center items-center h-screen">
+      <Loader className="animate-spin h-12 w-12 text-success" />
+    </div>
+  )
+  
+  if (error) return (
+    <div className="flex flex-col items-center justify-center h-screen">
+      <AlertCircle className="h-12 w-12 text-error mb-4" />
+      <p className="text-xl text-error">{error}</p>
+    </div>
+  )
+  
+  if (!room) return (
+    <div className="flex flex-col items-center justify-center h-screen">
+      <AlertCircle className="h-12 w-12 text-warning mb-4" />
+      <p className="text-xl">Room not found</p>
+    </div>
+  )
 
   return (
-    <div className="container mx-auto p-4 pt-16 mt-[60px]">
-      <h1 className="text-3xl font-bold text-center mb-6">Checkout</h1>
+    <div className="container mx-auto p-4 pt-16 mt-[60px] h-screen ">
+      <h1 className="text-4xl font-bold text-center mb-8 text-success">Checkout</h1>
       
-      <div className="card bg-base-100 shadow-xl mb-6">
+      <div className="card bg-gray-900 shadow-xl mb-8">
         <div className="card-body">
-          <h2 className="card-title">Booking Details</h2>
-          <div className="flex flex-col md:flex-row">
-            <div className="w-full md:1/2">
-              <p><strong>Room:</strong> {room.title}</p>
-              <p><strong>Full Name:</strong> {bookingData.fullName}</p>
-              <p><strong>Age:</strong> {bookingData.age}</p>
-              <p><strong>Address:</strong> {bookingData.address}</p>
-              <p><strong>Phone:</strong> {bookingData.phone}</p>
-              <p><strong>Number of People:</strong> {bookingData.numOfPeople}</p>
+          <h2 className="card-title text-2xl mb-6">Booking Details</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <p className="flex items-center mb-2"><FileText className="mr-2 text-success" /> <strong>Room:</strong> {room.title}</p>
+              <p className="flex items-center mb-2"><Users className="mr-2 text-success" /> <strong>Full Name:</strong> {bookingData.fullName}</p>
+              <p className="flex items-center mb-2"><Users className="mr-2 text-success" /> <strong>Age:</strong> {bookingData.age}</p>
+              <p className="flex items-center mb-2"><MapPin className="mr-2 text-success" /> <strong>Address:</strong> {bookingData.address}</p>
+              <p className="flex items-center mb-2"><Phone className="mr-2 text-success" /> <strong>Phone:</strong> {bookingData.phone}</p>
             </div>
-            <div className="w-full md:1/2">
-            <p><strong>Check In:</strong> {bookingData.checkIn}</p>
-              <p><strong>Check Out:</strong> {bookingData.checkOut}</p>
-              <p><strong>Payment Method:</strong> {bookingData.paymentMethod}</p>
-              <p><strong>Special Requests:</strong> {bookingData.specialRequests || 'None'}</p>
-              <p><strong>Total Price:</strong> ${bookingData.totalPrice.toFixed(2)}</p>
+            <div>
+              <p className="flex items-center mb-2"><Calendar className="mr-2 text-success" /> <strong>Check In:</strong> {bookingData.checkIn}</p>
+              <p className="flex items-center mb-2"><Calendar className="mr-2 text-success" /> <strong>Check Out:</strong> {bookingData.checkOut}</p>
+              <p className="flex items-center mb-2"><Users className="mr-2 text-success" /> <strong>Number of People:</strong> {bookingData.numOfPeople}</p>
+              <p className="flex items-center mb-2"><CreditCard className="mr-2 text-success" /> <strong>Payment Method:</strong> {bookingData.paymentMethod}</p>
+              <p className="flex items-center mb-2"><FileText className="mr-2 text-success" /> <strong>Special Requests:</strong> {bookingData.specialRequests || 'None'}</p>
+              <p className="flex items-center mb-2"><DollarSign className="mr-2 text-success" /> <strong>Total Price:</strong> ${bookingData.totalPrice.toFixed(2)}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flex justify-between items-center mb-6">
-        <Link href={`/booking/${params.id}`} className="btn btn-outline btn-success">
-          Edit Details
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
+        <Link href={`/booking/${params.id}`} className="btn btn-outline btn-success w-full sm:w-auto">
+          <FileText className="mr-2" /> Edit Details
         </Link>
         <button 
-          className="btn btn-success" 
+          className="btn btn-success w-full sm:w-auto"
           onClick={placeOrder}
           disabled={placingOrder}
         >
-          {placingOrder ? 'Placing Order...' : 'Place Order'}
+          {placingOrder ? <><Loader className="animate-spin mr-2" /> Placing Order...</> : <><CheckCircle className="mr-2" /> Place Order</>}
         </button>
       </div>
 
-      {error && <div className="alert alert-error">{error}</div>}
+      {error && (
+        <div className="alert alert-error">
+          <AlertCircle className="mr-2" />
+          {error}
+        </div>
+      )}
     </div>
   )
 }

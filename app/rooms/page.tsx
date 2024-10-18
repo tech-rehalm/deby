@@ -111,7 +111,7 @@ export default function RoomsPage() {
 
 function RoomCard({ room, isLarge = false }: { room: Room; isLarge?: boolean }) {
   return (
-    <Link href={`rooms/${room._id}`} className={`card bg-base-100 shadow-xl ${isLarge ? 'md:col-span-2' : ''}`}>
+    <Link href={`rooms/${room._id}`} className={`card bg-gray-900 shadow-xl ${isLarge ? 'md:col-span-2' : ''}`}>
       <figure>
         <img src={`${room.image}`} alt={room.title} width={500} height={300} className="w-full h-64 object-cover" />
       </figure>

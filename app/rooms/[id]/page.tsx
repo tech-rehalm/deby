@@ -102,7 +102,7 @@ export default function RoomDetailsPage() {
 
   return (
     <div className="container mx-auto p-4 pt-[80px]">
-      <div className="card lg:card-side bg-base-100 shadow-xl">
+      <div className="card lg:card-side bg-gray-900 shadow-xl">
         <figure className="lg:w-1/2">
           <img src={`${room.image}`} alt={room.title} width={500} height={300} className="w-full h-full object-cover" />
         </figure>

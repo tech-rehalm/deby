@@ -151,7 +151,7 @@ export default function BookingPage() {
     <div className="container mx-auto p-4 pt-16">
       <h1 className="text-3xl font-bold text-center mb-6">Book Your Stay</h1>
       
-      <div className="card bg-base-100 shadow-xl mb-6">
+      <div className="card bg-gray-900 shadow-xl mb-6">
         <figure>
           <img src={`${room.image}`} alt={room.title} width={400} height={300} className="w-full h-64 object-cover" />
         </figure>
@@ -168,7 +168,7 @@ export default function BookingPage() {
             type="text" 
             name="fullName" 
             placeholder="Full Name" 
-            className="input input-bordered input-success" 
+            className="input input-bordered bg-gray-800 input-success" 
             required 
             value={bookingData.fullName}
             onChange={(e) => setBookingData({ fullName: e.target.value })}
@@ -177,7 +177,7 @@ export default function BookingPage() {
             type="number" 
             name="age" 
             placeholder="Age" 
-            className="input input-bordered input-success" 
+            className="input input-bordered bg-gray-800 input-success" 
             required 
             value={bookingData.age}
             onChange={(e) => setBookingData({ age: e.target.value })}
@@ -186,7 +186,7 @@ export default function BookingPage() {
             type="text" 
             name="address" 
             placeholder="Address" 
-            className="input input-bordered input-success" 
+            className="input input-bordered bg-gray-800 input-success" 
             required 
             value={bookingData.address}
             onChange={(e) => setBookingData({ address: e.target.value })}
@@ -195,7 +195,7 @@ export default function BookingPage() {
             type="tel" 
             name="phone" 
             placeholder="Phone" 
-            className="input input-bordered input-success" 
+            className="input input-bordered bg-gray-800 input-success" 
             required 
             value={bookingData.phone}
             onChange={(e) => setBookingData({ phone: e.target.value })}
@@ -204,7 +204,7 @@ export default function BookingPage() {
             type="date" 
             name="checkIn" 
             placeholder="Check In" 
-            className="input input-bordered input-success" 
+            className="input input-bordered bg-gray-800 input-success" 
             required 
             value={bookingData.checkIn}
             onChange={(e) => setBookingData({ checkIn: e.target.value })}
@@ -213,7 +213,7 @@ export default function BookingPage() {
             type="date" 
             name="checkOut" 
             placeholder="Check Out" 
-            className="input input-bordered input-success" 
+            className="input input-bordered bg-gray-800 input-success" 
             required 
             value={bookingData.checkOut}
             onChange={(e) => setBookingData({ checkOut: e.target.value })}
@@ -222,14 +222,14 @@ export default function BookingPage() {
             type="number" 
             name="numOfPeople" 
             placeholder="Number of People" 
-            className="input input-bordered input-success" 
+            className="input input-bordered bg-gray-800 input-success" 
             required 
             value={bookingData.numOfPeople}
             onChange={(e) => setBookingData({ numOfPeople: e.target.value })}
           />
           <select 
             name="paymentMethod" 
-            className="select select-bordered select-success" 
+            className="select select-bordered bg-gray-800 select-success" 
             required
             value={bookingData.paymentMethod}
             onChange={(e) => setBookingData({ paymentMethod: e.target.value })}
@@ -243,7 +243,7 @@ export default function BookingPage() {
         
         <textarea 
           name="specialRequests" 
-          className="textarea textarea-bordered textarea-success" 
+          className="textarea textarea-bordered bg-gray-800 textarea-success" 
           placeholder="Special Requests"
           value={bookingData.specialRequests}
           onChange={(e) => setBookingData({ specialRequests: e.target.value })}

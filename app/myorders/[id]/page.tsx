@@ -67,11 +67,11 @@ export default function UserBookingsPage() {
   if (!user) return <div className="text-center pt-16 mt-[60px]">User not found</div>
 
   return (
-    <div className="min-h-screen bg-success p-4 pt-16 mt-[60px]">
+    <div className="min-h-screen bg-gray-800 p-4 pt-16 mt-[60px]">
       <div className="container mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-8 text-success-content">Your Bookings</h1>
+        <h1 className="text-4xl font-bold text-center mb-8 text-success">Your Bookings</h1>
         
-        <div className="card bg-base-100 shadow-xl mb-8">
+        <div className="card bg-gray-900 shadow-xl mb-8">
           <div className="card-body">
             <h2 className="card-title text-2xl mb-4">User Details</h2>
             <p><strong>Name:</strong> {user.name}</p>
@@ -80,11 +80,11 @@ export default function UserBookingsPage() {
         </div>
 
         {orders.length === 0 ? (
-          <div className="text-center text-success-content">No bookings found.</div>
+          <div className="text-center text-success">No bookings found.</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {orders.map((order) => (
-              <div key={order._id} className="card bg-base-100 shadow-xl overflow-hidden">
+              <div key={order._id} className="card bg-gray-900 shadow-xl overflow-hidden">
                 <figure className="relative h-48">
                   <Link href={`/order/${order._id}`}>
                   <Image 

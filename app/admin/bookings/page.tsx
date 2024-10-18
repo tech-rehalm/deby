@@ -139,24 +139,24 @@ export default function Page() {
 
   return (
     <AdminNavigation>
-      <div className="p-6 bg-base-200 min-h-screen">
-        <h1 className="text-3xl font-bold text-success mb-6">Booking Management</h1>
+      <div className="p-6 mt-[50px] min-h-screen">
+        <h1 className="text-3xl font-bold text-success mb-6">Bookings Management</h1>
         
         {/* Charts */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-          <div className="card bg-base-100 shadow-xl">
+          <div className="card bg-gray-900 shadow-xl">
             <div className="card-body">
               <h2 className="card-title text-success">Total Bookings</h2>
               <p className="text-4xl font-bold">{totalOrders}</p>
             </div>
           </div>
-          <div className="card bg-base-100 shadow-xl">
+          <div className="card bg-gray-900 shadow-xl">
             <div className="card-body">
               <h2 className="card-title text-success">Paid Bookings</h2>
               <p className="text-4xl font-bold">{paidOrders}</p>
             </div>
           </div>
-          <div className="card bg-base-100 shadow-xl">
+          <div className="card bg-gray-900 shadow-xl">
             <div className="card-body">
               <h2 className="card-title text-success">Pending Bookings</h2>
               <p className="text-4xl font-bold">{pendingOrders}</p>
@@ -164,7 +164,7 @@ export default function Page() {
           </div>
         </div>
         
-        <div className="card bg-base-100 shadow-xl mb-6">
+        <div className="card bg-gray-900 shadow-xl mb-6">
           <div className="card-body">
             <h2 className="card-title text-success mb-4">Bookings Statistics</h2>
             <Line data={chartData} options={chartOptions} />
@@ -192,7 +192,7 @@ export default function Page() {
                 </tr>
               </thead>
               <tbody>
-                {bookings.map((booking) => (
+                {bookings?.map((booking) => (
                   <tr key={booking._id}>
                     <td className="hidden md:table-cell">{booking._id}</td>
                     <td>{booking.user?.name || booking.userDetails.fullName}</td>
@@ -202,7 +202,7 @@ export default function Page() {
                     <td>${booking.totalPrice}</td>
                     <td className="hidden md:table-cell">
                       <select
-                        className="select select-bordered select-sm select-success text-success w-full max-w-xs"
+                        className="select select-bordered select-sm select-success bg-gray-800 text-success w-full max-w-xs"
                         value={booking.status}
                         onChange={(e) => updateBookingStatus(booking._id, e.target.value as "pending" | "paid")}
                       >

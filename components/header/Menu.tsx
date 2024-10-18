@@ -41,7 +41,7 @@ export default function Navbar() {
   )
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b bg-base-200 backdrop-blur">
+    <nav className="sticky top-0 z-40 w-full border-b bg-gray-800 backdrop-blur">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center space-x-2 text-success">
           <Hotel className="h-6 w-6" />

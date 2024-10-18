@@ -1,97 +1,125 @@
-import { Star } from 'lucide-react'
-import Link from 'next/link'
 import React from 'react'
+import Link from 'next/link'
+import { Star, Bed, Users, Heart, Gift, ChevronRight, MapPin, Phone, Mail } from 'lucide-react'
 
 export default function Services() {
   return (
-    <div id='services' className='w-full md:pt-[60px]   min-h-screen flex flex-col relative overflow-hidden p-4'>
-        <div className='w-full min-h-[70vh] bg-gray-200 pt-6 sm:px-[50px]'>
-        <h1 className="text-5xl text-success  font-bold w-full text-center mb-5">A little overview of services we offer </h1>
-        <div className="flex flex-col sm:flex-row w-full text-gray-700 items-center justify-center shadow-lg p-5 ">
-            <div className="min-w-[30%] p-5">
-                <img src="/guest.jpg" className='w-full h-[220px] object-cover' alt="" />
-            </div> 
-            <div className="flex flex-col min-w-[25%] cursor-pointer ">
-                <Link href="/accomodation" className=' my-3 transition duration-500 hover:scale-110'>Accomodation</Link>
-                <Link href="/accomodation" className=' my-3 transition duration-500 hover:scale-110'>Leisure Center</Link>
-                <Link href="/accomodation" className=' my-3 transition duration-500 hover:scale-110'>Resturants</Link>
-                <Link href="/accomodation" className=' my-3 transition duration-500 hover:scale-110'>Conferencing</Link>
-                <Link href="/accomodation" className=' my-3 transition duration-500 hover:scale-110'>Contact Us now</Link>
+    <div className="min-h-screen gray-800">
+
+      {/* Services Overview */}
+      <div className="container mx-auto py-16 px-4">
+        <h2 className="text-4xl font-bold text-center mb-12">Our Services</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            { title: 'Accommodation', icon: <Bed className="w-12 h-12 mb-4 text-success" />, description: 'Luxurious rooms and suites' },
+            { title: 'Leisure Center', icon: <Users className="w-12 h-12 mb-4 text-success" />, description: 'State-of-the-art fitness facilities' },
+            { title: 'Restaurants', icon: <Gift className="w-12 h-12 mb-4 text-success" />, description: 'World-class dining experiences' },
+            { title: 'Conferencing', icon: <Users className="w-12 h-12 mb-4 text-success" />, description: 'Modern meeting and event spaces' },
+          ].map((service, index) => (
+            <div key={index} className="card bg-base-100 shadow-xl">
+              <div className="card-body items-center text-center">
+                {service.icon}
+                <h3 className="card-title">{service.title}</h3>
+                <p>{service.description}</p>
+                <div className="card-actions">
+                  <Link href={`/${service.title.toLowerCase()}`} className="btn btn-success btn-sm">
+                    Learn More
+                    <ChevronRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </div>
+              </div>
             </div>
-            <div className="flex min-w-[50%] p-[5%] bg-slate-900 text-gray-200">
-                <p className='text-center'>Experience unmatched comfort and luxury. Whether you're here for business or leisure, our team is dedicated to making your stay unforgettable. Relax in our elegant rooms, savor world-class dining, and enjoy personalized service every step of the way. At Deby Hotel, your perfect escape awaits.</p>
-            </div>
+          ))}
         </div>
-      
-    </div>
-        <h1 className="text-xl text-center lg:mt-10 my-4 mb-5 md:text-3xl lg:text-5xl font-bold">
-            What we offer</h1>
-            <div className="w-full rounded-lg shadow-gray-800 shadow-lg  grid grid-cols-1 sm:grid-cols-2 gap-3 lg:grid-cols-4 border border-gray-800 p-3 items-center">
-                <div className="card border w-full  border-gray-800 bg-gradient-to-br from-gray-800 p-3">
-                    <h1 className="text-lg font-bold text-success">Bedrooms</h1>
-                    <img src="/room1.jpg" alt="" className="h-[150px] object-cover rounded-md" />
-                    <div className="text-sm my-2 font-extralight">Day and night accomodation</div>
-                    <div className="font-bold text-lg text-success">
-                        Affordable and luxurious
+      </div>
+
+      {/* Featured Offerings */}
+      <div className="bg-base-300 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12">Featured Offerings</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { title: 'Bedrooms', image: '/room1.jpg', description: 'Day and night accommodation', price: 'From $99/night' },
+              { title: 'Boardrooms', image: '/conf2.webp', description: 'Professional meeting spaces', price: 'From $199/day' },
+              { title: 'Honeymoon Suites', image: '/gaze4.webp', description: 'Romantic getaways', price: 'From $299/night' },
+              { title: 'Wedding Venues', image: '/venue5.jpg', description: 'Unforgettable celebrations', price: 'Custom packages' },
+            ].map((offering, index) => (
+              <div key={index} className="card bg-base-100 shadow-xl">
+                <figure><img src={offering.image} alt={offering.title} className="h-48 w-full object-cover" /></figure>
+                <div className="card-body">
+                  <h3 className="card-title">{offering.title}</h3>
+                  <p>{offering.description}</p>
+                  <div className="flex items-center justify-between mt-2">
+                    <span className="text-primary font-bold">{offering.price}</span>
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-warning fill-current" />
+                      ))}
                     </div>
-                    <div className="flex text-warning text-sm font-extralight">
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                    </div>
-                    <Link href="/rooms" className='btn w-full btn-success text-sm '>Check available rooms</Link>
+                  </div>
+                  <div className="card-actions justify-end mt-4">
+                    <Link href="/rooms" className="btn btn-primary btn-sm">
+                      Check Availability
+                    </Link>
+                  </div>
                 </div>
-                <div className="card border w-full  border-gray-800 bg-gradient-to-br from-gray-800 p-3">
-                    <h1 className="text-lg font-bold text-success">Boardrooms</h1>
-                    <img src="/conf2.webp" alt="" className="h-[150px] object-cover rounded-md" />
-                    <div className="text-sm my-2 font-extralight">Professional and conference meetings</div>
-                    <div className="font-bold text-lg text-success">
-                        All resouces provided
-                    </div>
-                    <div className="flex text-warning text-sm font-extralight">
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                    </div>
-                    <Link href="/rooms" className='btn w-full btn-success text-sm '>Find boardrooms</Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonials */}
+      <div className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-success">What Our Guests Say</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { name: 'Anania Verma', comment: 'Exceptional service and stunning views. Will definitely return!', rating: 5 },
+              { name: 'Jane Smith', comment: 'The perfect venue for our company retreat. Highly recommended!', rating: 5 },
+              { name: 'Alex Johnson', comment: 'Luxurious rooms and world-class dining. A truly unforgettable experience.', rating: 5 },
+            ].map((testimonial, index) => (
+              <div key={index} className="card bg-base-100 shadow-xl">
+                <div className="card-body">
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-warning fill-current" />
+                    ))}
+                  </div>
+                  <p className="mb-4">&ldquo;{testimonial.comment}&rdquo;</p>
+                  <p className="font-bold">- {testimonial.name}</p>
                 </div>
-                <div className="card border w-full  border-gray-800 bg-gradient-to-br from-gray-800 p-3">
-                    <h1 className="text-lg font-bold text-success">Honeymoon</h1>
-                    <img src="/gaze4.webp" alt="" className="h-[150px] object-cover rounded-md" />
-                    <div className="text-sm my-2 font-extralight">Honeymoon suites and gazebos</div>
-                    <div className="font-bold text-lg text-success">
-                        Book your suite
-                    </div>
-                    <div className="flex text-warning text-sm font-extralight">
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                    </div>
-                    <Link href="/rooms" className='btn w-full btn-success text-sm '>Check availability</Link>
-                </div>
-                <div className="card border w-full  border-gray-800 bg-gradient-to-br from-gray-800 p-3"> 
-                    <h1 className="text-lg font-bold text-success">Wedding Venues</h1>
-                    <img src="/venue5.jpg" alt="" className="h-[150px] object-cover rounded-md" />
-                    <div className="text-sm my-2 font-extralight">Luxurious wedding venues</div>
-                    <div className="font-bold text-lg text-success">
-                        Check youe theme
-                    </div>
-                    <div className="flex text-warning text-sm font-extralight">
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                        <Star className='m-1'/>
-                    </div>
-                    <Link href="/rooms" className='btn w-full btn-success text-sm '>Check available Venues</Link>
-                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Contact Section */}
+      <div className="bg-base-300 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-success">Contact Us</h2>
+          <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex items-center">
+              <MapPin className="w-6 h-6 mr-2 text-primary" />
+              <span>123 Hotel Lama Street, Delhi, India</span>
             </div>
+            <div className="flex items-center">
+              <Phone className="w-6 h-6 mr-2 text-primary" />
+              <span>+1 (123) 456-7890</span>
+            </div>
+            <div className="flex items-center">
+              <Mail className="w-6 h-6 mr-2 text-primary" />
+              <span>info@debyhotel.com</span>
+            </div>
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/contact" className="btn btn-success">
+              Get in Touch
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
