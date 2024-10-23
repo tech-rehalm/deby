@@ -37,9 +37,11 @@ export async function POST(req: any) {
 
 export async function GET() {
     try {
-        const users = await User.find({});
+        const users = await User.find();
         return NextResponse.json(users, { status: 200 });
     } catch (error:any) {
+        console.log(error);
+        
         return NextResponse.json({ message: error.message }, { status: 500 }); // 500 Internal Server Error
     }
 }

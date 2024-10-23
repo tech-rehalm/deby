@@ -74,8 +74,8 @@ export default function AdminNavigation({ children }: { children: React.ReactNod
 
       {/* Main content */}
       <div className={`flex-1 flex flex-col ${isOpen ? 'ml-64' : 'ml-20'} transition-all duration-300 ease-in-out`}>
-        <header className="bg-gray-800 shadow-md z-40 fixed top-[70px] left-0 right-0">
-          <div className="navbar">
+        {/* <header className="bg-gray-800 shadow-md z-40 fixed top-[70px] left-0 right-0">
+          <div className="navbar -z-0">
             <div className="flex-none">
               {isMobile && (
                 <button onClick={toggleSidebar} className="btn btn-square btn-ghost">
@@ -98,7 +98,7 @@ export default function AdminNavigation({ children }: { children: React.ReactNod
               </button>
             </div>
           </div>
-        </header>
+        </header> */}
         <main className="flex-1 bg-gray-800 p-6">
           {children}
         </main>

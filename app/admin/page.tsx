@@ -133,7 +133,7 @@ export default function AdminDashboard() {
   if(error) fetchDashboardData()
   return (
     <AdminNavigation>
-      <h1 className="text-4xl font-bold text-center mb-8 mt-[60px] ">Admin Dashboard</h1>
+      <h1 className="text-4xl font-bold text-center mb-8  ">Admin Dashboard</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div className="card bg-gray-900 shadow-xl">

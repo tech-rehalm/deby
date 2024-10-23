@@ -15,6 +15,8 @@ export default function Users() {
             setLoading(true)
             const response = await fetch("/api/users")
             const data = await response.json()
+            console.log(data)
+            
             setUsers(data)
         } catch (error) {
             console.error("Failed to fetch users:", error)
