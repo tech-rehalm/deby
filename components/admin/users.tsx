@@ -30,7 +30,7 @@ export default function Users() {
         fetchUsers()
     }, [])
 
-    const filteredUsers = users.filter(user =>
+    const filteredUsers = users?.filter(user =>
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.email.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -93,7 +93,7 @@ export default function Users() {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredUsers.map((user) => (
+                            {filteredUsers?.map((user) => (
                                 <tr key={user._id} className="hover">
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
