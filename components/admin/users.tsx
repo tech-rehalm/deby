@@ -28,6 +28,8 @@ export default function Users() {
 
     useEffect(() => {
         fetchUsers()
+        fetchUsers()
+        fetchUsers()
     }, [])
 
     const filteredUsers = users?.filter(user =>
