@@ -70,7 +70,7 @@ export default function ContactPage() {
                             <p className="flex items-center"><CheckCircle className="mr-2" /> Exclusive Offers</p>
                         </div>
                     </div>
-                    <div className="md:w-1/2 p-8">
+                    <div className="md:w-1/2 p-8 bg-gray-900">
                         <form onSubmit={onSubmit} className="space-y-4 bg-gray-900">
                             <div>
                                 <label htmlFor="name" className="label">
@@ -81,7 +81,7 @@ export default function ContactPage() {
                                     id="name"
                                     name="name"
                                     required
-                                    className="input input-bordered w-full"
+                                    className="input input-bordered bg-gray-800 w-full"
                                     placeholder="John Doe"
                                 />
                             </div>
@@ -94,7 +94,7 @@ export default function ContactPage() {
                                     id="email"
                                     name="email"
                                     required
-                                    className="input input-bordered w-full"
+                                    className="input input-bordered bg-gray-800 w-full"
                                     placeholder="johndoe@example.com"
                                 />
                             </div>
@@ -106,7 +106,7 @@ export default function ContactPage() {
                                     id="message"
                                     name="message"
                                     required
-                                    className="textarea textarea-bordered w-full h-32"
+                                    className="textarea textarea-bordered bg-gray-800 w-full h-32"
                                     placeholder="Your message here..."
                                 ></textarea>
                             </div>

@@ -200,7 +200,9 @@ export default function BookingPage() {
             value={bookingData.phone}
             onChange={(e) => setBookingData({ phone: e.target.value })}
           />
-          <input 
+          <div className="flex flex-col">
+            <label htmlFor="checkin" className="label">ChechIn</label>
+            <input 
             type="date" 
             name="checkIn" 
             placeholder="Check In" 
@@ -209,7 +211,10 @@ export default function BookingPage() {
             value={bookingData.checkIn}
             onChange={(e) => setBookingData({ checkIn: e.target.value })}
           />
-          <input 
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="checkin" className="label">ChechOut</label>
+             <input 
             type="date" 
             name="checkOut" 
             placeholder="Check Out" 
@@ -218,6 +223,8 @@ export default function BookingPage() {
             value={bookingData.checkOut}
             onChange={(e) => setBookingData({ checkOut: e.target.value })}
           />
+          </div>
+         
           <input 
             type="number" 
             name="numOfPeople" 

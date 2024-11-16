@@ -102,7 +102,7 @@ export default function AdminSuiteManagement() {
 
   return (
     <AdminNavigation>
-      <div className="p-4 min-h-screen bg-base-200">
+      <div className="p-4 min-h-screen bg-gray-800">
         <h1 className="text-4xl font-bold mb-6 text-primary">Deby Hotel</h1>
         <div className="flex flex-col lg:flex-row gap-6">
           <div className="card bg-gray-800 shadow-xl lg:w-1/3">
@@ -112,7 +112,7 @@ export default function AdminSuiteManagement() {
                 <div className="form-control">
                   <label htmlFor='image' className="label cursor-pointer justify-center">
                     <span className="label-text sr-only">Upload Image</span>
-                    <div className="w-32 h-32 rounded-full bg-base-300 flex items-center justify-center text-primary overflow-hidden">
+                    <div className="w-32 h-32 rounded-full bg-slate-900 flex items-center justify-center text-primary overflow-hidden">
                       {imageUrl ? (
                         <img src={imageUrl} alt="Preview" className="w-full h-full object-cover" />
                       ) : (

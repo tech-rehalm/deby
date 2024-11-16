@@ -144,7 +144,7 @@ export default function RoomDetailsPage() {
                 name="title"
                 value={formData.title}
                 onChange={handleInputChange}
-                className="input input-success w-full"
+                className="input input-success bg-gray-800 w-full"
                 required
               />
             </div>
@@ -154,7 +154,7 @@ export default function RoomDetailsPage() {
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
-                className="textarea textarea-success w-full"
+                className="textarea textarea-success w-full bg-gray-800"
                 required
               />
             </div>
@@ -165,7 +165,7 @@ export default function RoomDetailsPage() {
                 name="number"
                 value={formData.number}
                 onChange={handleInputChange}
-                className="input input-success w-full"
+                className="input input-success bg-gray-800 w-full"
                 required
               />
             </div>
